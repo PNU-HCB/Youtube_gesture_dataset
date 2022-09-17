@@ -5,7 +5,6 @@ from tensorflow.keras import models
 import datetime
 
 class Inference():
-
     def __init__(self, model_json, model_weight):
 
         model_graph = open(model_json, 'r')
@@ -17,59 +16,90 @@ class Inference():
         model.compile(loss = self.euc_dist_keras, optimizer = 'adam')
         self.model = model
 
+
     def preprocess_skeletons(self, keypoints):
         for i in range(len(keypoints)):
             if np.isnan(keypoints[i]):
                 keypoints[i] = 0
 
-    def get_median_from_skeletons(self,skeletons):
-        x_mid=[0]*15
-        y_mid=[0]*15
-        x=[]
-        y=[]
+
+    def replace_missing_values(self,skeletons):
+        def put_mid(arr):
+            i = 0
+            while (i < len(arr) and arr[i] == 0):
+                i += 1
+            if (i >= len(arr)):
+                return
+            for k in range(i):
+                arr[k] = arr[i]
+
+            while (i < len(arr)):
+                if (arr[i] == 0):
+                    left = i - 1
+                    while (arr[i] == 0):
+                        i += 1
+                        if (i >= len(arr)):
+                            for k in range(left, i):
+                                arr[k] = arr[left]
+                            break
+                    if (i >= len(arr)):
+                        break
+                    for k in range(left + 1, i):
+                        arr[k] = (arr[k - 1] + arr[i]) / 2
+
+                if (i >= len(arr)):
+                    break
+                i += 1
+
+        x_values = []
+        y_values = []
         for i in range(15):
-            x.append([0])
-            y.append([0])
-        for keypoints in skeletons:
+            x_values.append([])
+            y_values.append([])
 
-            self.preprocess_skeletons(keypoints)
-            key2d = []
-            for i in range(0, len(keypoints), 2):
-                key2d.append((keypoints[i], keypoints[i + 1]))
-            keypoints = key2d
-            keypoints = np.array(keypoints)
-            x1 = keypoints[..., 0]
-            y1 = keypoints[..., 1]
-
+        for skeleton in skeletons:
             for i in range(15):
-                if(x[i]!=0 and y[i]!=0):
-                    x[i].append(x1[i])
-                    y[i].append(y1[i])
+                x_values[i].append(skeleton[i*2])
+                y_values[i].append(skeleton[i*2+1])
+
         for i in range(15):
-            x_mid[i]=np.median(x[i])
-            y_mid[i] = np.median(y[i])
-        return x_mid, y_mid
+            put_mid(x_values[i])
+            put_mid(y_values[i])
+
+        for i in range(len(skeletons)):
+            for j in range(15):
+                skeletons[i][j*2] = x_values[j][i]
+                skeletons[i][j*2+1] = y_values[j][i]
+
 
     def make3D(self,skeletons):
         skeleton_3d = []
-        x_mid,y_mid = self.get_median_from_skeletons(skeletons)
-        for keypoints in skeletons:
+        print("==================")
+        print(skeletons)
+        self.replace_missing_values(skeletons)
+        print("==================")
+        print(skeletons)
+        return
 
-            self.preprocess_skeletons(keypoints)
+
+        for key_points in skeletons:
+            self.preprocess_skeletons(key_points)
             model = self.model
             key2d=[]
-            for i in range(0,len(keypoints),2):
-                key2d.append((keypoints[i],keypoints[i+1]))
-            keypoints = key2d
+
+            for i in range(0,len(key_points),2):
+                key2d.append((key_points[i],key_points[i+1]))
+            key_points = key2d
             x_std, y_std = [], []
-            keypoints = np.array(keypoints)
-            x1 = keypoints[..., 0]
-            y1 = keypoints[..., 1]
+            key_points = np.array(key_points)
+            x1 = key_points[..., 0]
+            y1 = key_points[..., 1]
+
             for i in range(15):
                 if x1[i] == 0:
-                    x1[i]=x_mid[i]
+                    x1[i] = x_median[i]
                 if y1[i] == 0:
-                    y1[i] = y_mid[i]
+                    y1[i] = y_median[i]
 
             try:
                 x = [x1[8], x1[1], x1[0],
@@ -88,59 +118,35 @@ class Inference():
                 ym = np.mean(y)
                 sigma_x = np.std(x)
                 sigma_y = np.std(y)
-                for l in range(len(keypoints)):
+
+                for l in range(len(key_points)):
                     xs = (x[l] - xm) / ((sigma_x + sigma_y) / 2)
                     ys = (y[l] - ym) / ((sigma_x + sigma_y) / 2)
                     x_std.append(xs)
                     y_std.append(ys)
+
                 inpt = np.concatenate((x_std, y_std))
                 inpt = inpt.reshape(1, len(inpt))
                 output = model.predict(inpt)
                 z = output[0]
+
                 for k in range(len(z)):
                     z[k] = abs((z[k] * ((sigma_x + sigma_y) / 2)))
 
-                self.swap_list(x, y, z, 0, 2)
-                self.swap_list(x, y, z, 2, 3)
-                self.swap_list(x, y, z, 3, 4)
-                self.swap_list(x, y, z, 4, 5)
-                self.swap_list(x, y, z, 5, 6)
-                self.swap_list(x, y, z, 6, 7)
+                key_points_3d = []
 
-                #척추
-                self.swap_list(x, y, z, 0, 8)
-                #아래머리
-
-                #윗머리
-                self.swap_list(x, y, z, 8, 2)
-
-                #오른쪾어깨
-                self.swap_list(x, y, z, 3, 8)
-                #오른쪽팔꿈치
-                self.swap_list(x, y, z, 4, 8)
-                #오른주먹
-                self.swap_list(x, y, z, 5, 8)
-                #왼쪽어깨
-                self.swap_list(x, y, z, 6, 8)
-                #왼쪾팔꿈치
-                self.swap_list(x, y, z, 7, 8)
-
-
-                result = []
                 for i in range(9):
-                    result.append([x[i], y[i], z[i]])
-                skeleton_3d.append(result)
-            except Exception as e:
+                    key_points_3d.append([x[i], y[i], z[i]])
 
+                skeleton_3d.append(key_points_3d)
+
+            except Exception as e:
                 print("except: ", e)
                 continue
 
         return skeleton_3d
 
+
     def euc_dist_keras(self, y_true, y_pred):
         return K.sqrt(K.sum(K.square(y_true - y_pred), axis=-1, keepdims=True))
 
-    def swap_list(self, x, y, z, origin_index, switch_index):
-        x[origin_index], x[switch_index] = x[switch_index], x[origin_index]
-        y[origin_index], y[switch_index] = y[switch_index], y[origin_index]
-        z[origin_index], z[switch_index] = z[switch_index], z[origin_index]

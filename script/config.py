@@ -15,7 +15,7 @@ class Config:
     OPENPOSE_BIN_PATH = 'C:\\Users\\makem\\ProjectHcb\\work\\openpose\\bin\\OpenPoseDemo.exe'
 
 
-class TEDConfig(Config):
+class YoutubeConfig(Config):
     YOUTUBE_CHANNEL_ID = "UC_pOKLycxyVwNneMVjfMBUA"
     WORK_PATH = 'C:\\Users\\makem\\ProjectHcb\\res\\Youtube_Dataset'
     CLIP_PATH = WORK_PATH + "/clip_ted"
@@ -23,26 +23,12 @@ class TEDConfig(Config):
     SKELETON_PATH = WORK_PATH + "/skeleton_ted"
     SUBTITLE_PATH = VIDEO_PATH
     OUTPUT_PATH = WORK_PATH + "/output"
-    VIDEO_SEARCH_START_DATE = datetime(2022, 6, 1, 0, 0, 0)
+    VIDEO_SEARCH_START_DATE = datetime(2019, 11, 18, 0, 0, 0)
     LANG = 'ko'
     SUBTITLE_TYPE = 'auto'
     FILTER_OPTION = {"threshold": 100}
     USE_3D_POSE = False
 
 
-class LaughConfig(Config):
-    YOUTUBE_CHANNEL_ID = "UCxyCzPY2pjAjrxoSYclpuLg"
-    WORK_PATH = '/mnt/work/work/Youtube_Dataset'
-    CLIP_PATH = WORK_PATH + "/clip_laugh"
-    VIDEO_PATH = WORK_PATH + "/videos_laugh"
-    SKELETON_PATH = WORK_PATH + "/skeleton_laugh"
-    SUBTITLE_PATH = VIDEO_PATH
-    OUTPUT_PATH = WORK_PATH + "/output"
-    VIDEO_SEARCH_START_DATE = datetime(2022, 7, 20, 0, 0, 0)
-    LANG = 'en'
-    SUBTITLE_TYPE = 'auto'
-    FILTER_OPTION = {"threshold": 50}
-
-
 # SET THIS
-my_config = TEDConfig
+my_config = YoutubeConfig

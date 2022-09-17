@@ -60,7 +60,6 @@ def get_subtitle_url(subtitles, language, ext):
 
 def main():
     if not os.path.exists(my_config.VIDEO_PATH):
-        print('==========Not Exist!!!==========')
         os.makedirs(my_config.VIDEO_PATH)
 
     language = my_config.LANG
@@ -90,10 +89,6 @@ def main():
 
     for i in range(len(vid_list)):
         error_count = 0
-        print(vid_list[i])
-
-
-
         with youtube_dl.YoutubeDL() as ydl:
             vid = vid_list[i]
             url = "https://youtu.be/{}".format(vid)

@@ -17,6 +17,7 @@ from data_utils import *
 
 warnings.filterwarnings("ignore")
 
+
 def read_subtitle(vid):
     postfix_in_filename = '-en.vtt'
     file_list = glob.glob(my_config.SUBTITLE_PATH + '/*' + vid + postfix_in_filename)
@@ -29,27 +30,20 @@ def read_subtitle(vid):
         return []
 
 
-# turn a Unicode string to plain ASCII, thanks to http://stackoverflow.com/a/518232/2809427
-def unicode_to_ascii(s):
-    return ''.join(
-        c for c in unicodedata.normalize('NFD', s)
-        if unicodedata.category(c) != 'Mn'
-    )
-
-
 # lowercase, trim, and remove non-letter characters
 def normalize_string(s, lang='en'):
-    # s = unicode_to_ascii(s.lower().strip())
     s = re.sub(r"([,.!?])", r" \1 ", s)  # isolate some marks
     s = re.sub(r"(['])", r"", s)  # remove apostrophe (i.e., shouldn't --> shouldnt)
     s = re.sub(r"[^가-힣0-9,.!?]+", r" ", s)  # replace other characters with whitespace
     s = re.sub(r"\s+", r" ", s).strip()
     return s
 
+
 def normalize_subtitle(vtt_subtitle):
     for i, sub in enumerate(vtt_subtitle):
         vtt_subtitle[i].text = normalize_string(vtt_subtitle[i].text)
     return vtt_subtitle
+
 
 def normalize_skeleton(data, resize_factor=None):
     def distance(x1, y1, x2, y2):
@@ -82,6 +76,7 @@ def normalize_skeleton(data, resize_factor=None):
 
     return normalized_data, resize_factor
 
+
 def normalize_skeleton_3d(data, resize_factor=None):
 
     def distance(x1, y1, z1, x2, y2, z2):
@@ -102,22 +97,18 @@ def normalize_skeleton_3d(data, resize_factor=None):
             resize_factor = shoulder_length
 
     normalized_data = data.copy()
-    # print('======',data,'========')
     for i in range(0, len(data)):
         if data[i][0] >= 0:
             normalized_data[i][0] = (data[i][0] - anchor_pt[0]) / resize_factor
         else:
-            print('=============NAN!!!!============')
             normalized_data[i][0] = np.nan
         if data[i][1] >= 0:
             normalized_data[i][1] = (data[i][1] - anchor_pt[1]) / resize_factor
         else:
-            print('=============NAN!!!!============')
             normalized_data[i][1] = np.nan
         if data[i][2] >= 0:
             normalized_data[i][2] = (data[i][2] - anchor_pt[2]) / resize_factor
         else:
-            print('=============NAN!!!!============')
             normalized_data[i][2] = np.nan
 
     return normalized_data
@@ -142,7 +133,6 @@ def make_lmdb_gesture_dataset():
     for i in range(3):
         with db[i].begin(write=True) as txn:
             txn.drop(db[i].open_db())
-            #print(txn.stat())
 
     video_files = sorted(glob.glob(my_config.VIDEO_PATH + "/*.mp4"), key=os.path.getmtime)
     for v_i, video_file in enumerate(tqdm_gui(video_files)):
@@ -163,22 +153,6 @@ def make_lmdb_gesture_dataset():
         if subtitle is None:
             print('[WARNING] subtitle does not exist! skip this video.')
             clip_data = []
-
-
-        # load audio
-        '''
-        audio_path = os.path.join(my_config.VIDEO_PATH, '{}.mp3'.format(vid))
-        audio = AudioWrapper(audio_path)
-        '''
-
-
-        # load 3D poses
-        '''
-        if my_config.USE_3D_POSE:
-            pose_path = my_config.POSE_3D_DATA_PATH
-            with open(pose_path, 'rb') as f:
-                poses_3d = pickle.load(f)
-        '''
 
         # process
         clips = [{'vid': vid, 'framerate': video_wrapper.framerate, 'clips': []},  # train
@@ -204,11 +178,6 @@ def make_lmdb_gesture_dataset():
             else:
                 dataset_idx = 0  # train
             valid_clip_count += 1
-
-            '''
-            # extract audio feature
-            audio_feat, audio_raw = audio.extract_audio_feat(video_wrapper.total_frames, start_frame_no, end_frame_no)
-            '''
 
             # get subtitle that fits clip
             for ib in range(word_index - 1, len(subtitle)):
@@ -246,22 +215,12 @@ def make_lmdb_gesture_dataset():
                         del skeleton[2::3]  # remove confidence values
                         del custom_skeleton[2::3]  # remove confidence values
                         skeleton, _ = normalize_skeleton(skeleton)
-
                         clip_skeleton.append(skeleton)
                         custom_clip_skeleton.append(custom_skeleton)
                         n_detected_poses += 1
                     else:  # frame with no skeleton
                         clip_skeleton.append([np.nan] * (n_joints * 2))
                         custom_clip_skeleton.append([np.nan] * (custom_joints * 2))
-                '''
-                if my_config.USE_3D_POSE:
-                    key_str = '{}_clip{:03d}'.format(vid, clip_idx)
-                    if key_str not in poses_3d:
-                        print('{} is not in the 3d pose data'.format(key_str))
-                        continue
-                    clip_skeleton_3d = poses_3d[key_str]
-                '''
-
 
                 # proceed if skeleton list is not empty
                 if n_detected_poses > 5:
@@ -271,22 +230,21 @@ def make_lmdb_gesture_dataset():
                     clip_skeleton_3d_list = estimate3d.make3D(custom_clip_skeleton)
 
                     clip_skeleton_3d_result = []
+
                     for i in range(len(clip_skeleton_3d_list)):
                         normalized = normalize_skeleton_3d(clip_skeleton_3d_list[i])
+
                         neck_x = (normalized[1][0] + normalized[2][0]) / 2;
                         neck_y = (normalized[1][1] + normalized[2][1]) / 2;
                         neck_z = (normalized[1][2] + normalized[2][2]) / 2;
-
                         normalized.insert(2, [neck_x, neck_y, neck_z])
 
                         clip_skeleton_3d_result.append(normalized)
+
                     clip_skeleton_3d = np.asarray(clip_skeleton_3d_result)
                     clips[dataset_idx]['clips'].append({'words': clip_word_list,
                                                         'skeletons': clip_skeleton,
                                                         'skeletons_3d': clip_skeleton_3d.astype('float16'),
-
-                                                        #'audio_feat': audio_feat, 'audio_raw': audio_raw,
-
                                                         'start_frame_no': start_frame_no, 'end_frame_no': end_frame_no,
                                                         'start_time': video_wrapper.frame2second(start_frame_no),
                                                         'end_time': video_wrapper.frame2second(end_frame_no)

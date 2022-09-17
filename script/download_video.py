@@ -90,7 +90,7 @@ def video_filter(info):
 
     try:
         if passed:
-            if len(info.get('automatic_captions')) == 0 and len(info.get('subtitles')) == 0: # len(info.get('automatic_captions')) == 0 and
+            if len(info.get('automatic_captions')) == 0 and len(info.get('subtitles')) == 0:
                 passed = False
     except:
         return False
@@ -103,11 +103,11 @@ def download_subtitle(url, filename, postfix):
 
 
 def download(vid_list):
-    ydl_opts = {'format': 'best[height=720,ext=mp4]',
+    ydl_opts = {'format': 'best[height=720,ext=mp4]', # best로 다운받아야 정상적으로 동작 가능
                 'writesubtitles': True,
                 'writeautomaticsub': True,
                 'outtmpl': 'dummy.mp4',
-                'subtitleslangs': ['ko']
+                'subtitleslangs': ['ko'] # 다운받을 자막 언어 설정
                 }  # download options
     language = my_config.LANG
 
@@ -123,7 +123,6 @@ def download(vid_list):
 
     for i in range(len(vid_list)):
         error_count = 0
-        print(vid_list[i])
         if i < skip_index:
             continue
 
@@ -139,7 +138,6 @@ def download(vid_list):
             vid = vid_list[i]
             url = "https://youtu.be/{}".format(vid)
             info = ydl.extract_info(url, download=False)
-            print('======info==ver2.=====', info)
             if video_filter(info):
                 with open("{}.json".format(vid), "w", encoding="utf-8") as js:
                     json.dump(info, js)

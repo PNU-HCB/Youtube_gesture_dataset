@@ -7,17 +7,14 @@ env = lmdb.open("C:\\Users\\makem\\ProjectHcb\\res\\Youtube_Dataset\\output\\lmd
 
 txn = env.begin()
 
-# print(txn.get(str(200)))
-#print(txn.stat()['entries'])
 np.set_printoptions(threshold=sys.maxsize)
-print("=======================================")
+
 for key, value in txn.cursor():
     video = pyarrow.deserialize(value)
     vid = video['vid']
     clips = video['clips']
-    print('=========')
-    print(video)
-    print(clips)
+    print("video : ", video)
+    print("clips : ", clips)
     break
 
 env.close()
