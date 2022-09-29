@@ -33,10 +33,15 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "C:/Users/makem/ProjectHcb/youtube-gesture-dataset",
+    "last_opened_file_path": "C:/Users/makem/ProjectHcb/youtube-gesture-dataset/script",
     "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\makem\ProjectHcb\youtube-gesture-dataset\script" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="confirm_video_files" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="youtube-gesture-dataset" />

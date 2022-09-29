@@ -83,7 +83,7 @@ def normalize_skeleton_3d(data, resize_factor=None):
         return np.sqrt((x1 - x2) ** 2 + (y1 - y2) ** 2 +(z1 - z2) ** 2)
 
     if data[1][2] == 0 or data[2][2] == 0 or data[5][2] == 0:  # neck or shoulder joints are missing
-        return [[np.nan] *3]*len(data), resize_factor
+        return [[np.nan] * 3] * len(data), resize_factor
 
     anchor_pt = (data[1][0], data[1][1], data[1][2])  # neck
     if resize_factor is None:
@@ -135,11 +135,14 @@ def make_lmdb_gesture_dataset():
             txn.drop(db[i].open_db())
 
     video_files = sorted(glob.glob(my_config.VIDEO_PATH + "/*.mp4"), key=os.path.getmtime)
+
+    total_num = 0
+    total_3d_value = [0] * 30
+
     for v_i, video_file in enumerate(tqdm_gui(video_files)):
 
         vid = os.path.split(video_file)[1][-15:-4]
         print(vid)
-
         # load clip, video, and subtitle
         clip_data = load_clip_data(vid)
         if clip_data is None:
@@ -161,7 +164,6 @@ def make_lmdb_gesture_dataset():
 
         word_index = 0
         valid_clip_count = 0
-
         for clip_idx, clip in enumerate(clip_data):
             start_frame_no, end_frame_no, clip_pose_all = clip['clip_info'][0], clip['clip_info'][1], clip['frames']
             clip_word_list = []
@@ -224,6 +226,7 @@ def make_lmdb_gesture_dataset():
 
                 # proceed if skeleton list is not empty
                 if n_detected_poses > 5:
+
                     # save subtitles and skeletons corresponding to clips
                     n_saved_clips[dataset_idx] += 1
                     clip_skeleton = np.asarray(clip_skeleton, dtype=np.float16)
@@ -234,26 +237,30 @@ def make_lmdb_gesture_dataset():
                     for i in range(len(clip_skeleton_3d_list)):
                         normalized = normalize_skeleton_3d(clip_skeleton_3d_list[i])
 
-                        neck_x = (normalized[1][0] + normalized[2][0]) / 2;
-                        neck_y = (normalized[1][1] + normalized[2][1]) / 2;
-                        neck_z = (normalized[1][2] + normalized[2][2]) / 2;
+                        neck_x = (normalized[1][0] + normalized[2][0]) / 2
+                        neck_y = (normalized[1][1] + normalized[2][1]) / 2
+                        neck_z = (normalized[1][2] + normalized[2][2]) / 2                                             
                         normalized.insert(2, [neck_x, neck_y, neck_z])
 
+                        for j in range(len(normalized)):
+                            total_3d_value[j * 3] += normalized[j][0]
+                            total_3d_value[j * 3 + 1] += normalized[j][1]
+                            total_3d_value[j * 3 + 2] += normalized[j][2]
+
+                        total_num += 1
                         clip_skeleton_3d_result.append(normalized)
 
                     clip_skeleton_3d = np.asarray(clip_skeleton_3d_result)
                     clips[dataset_idx]['clips'].append({'words': clip_word_list,
-                                                        'skeletons': clip_skeleton,
+                                                                                                                                                                                                                                                                                                                      'skeletons': clip_skeleton,
                                                         'skeletons_3d': clip_skeleton_3d.astype('float16'),
                                                         'start_frame_no': start_frame_no, 'end_frame_no': end_frame_no,
                                                         'start_time': video_wrapper.frame2second(start_frame_no),
                                                         'end_time': video_wrapper.frame2second(end_frame_no)
                                                         })
-
                     print('{} ({}, {})'.format(vid, start_frame_no, end_frame_no))
                 else:
                     print('{} ({}, {}) - consecutive missing frames'.format(vid, start_frame_no, end_frame_no))
-
 
         # write to db
         for i in range(3):
@@ -265,6 +272,12 @@ def make_lmdb_gesture_dataset():
                     txn.put(k, v)
 
     print('no. of saved clips: train {}, val {}, test {}'.format(n_saved_clips[0], n_saved_clips[1], n_saved_clips[2]))
+
+    for k in range(len(total_3d_value)):
+        total_3d_value[k] /= total_num
+
+    print("==========Total 3D Value==========")
+    print(total_3d_value)
 
     # close db
     for i in range(3):

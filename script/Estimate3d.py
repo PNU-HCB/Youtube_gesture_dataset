@@ -58,6 +58,7 @@ class Inference():
             y_values.append([])
 
         for skeleton in skeletons:
+            self.preprocess_skeletons(skeleton)
             for i in range(15):
                 x_values[i].append(skeleton[i*2])
                 y_values[i].append(skeleton[i*2+1])
@@ -74,16 +75,10 @@ class Inference():
 
     def make3D(self,skeletons):
         skeleton_3d = []
-        print("==================")
-        print(skeletons)
-        self.replace_missing_values(skeletons)
-        print("==================")
-        print(skeletons)
-        return
 
+        self.replace_missing_values(skeletons)
 
         for key_points in skeletons:
-            self.preprocess_skeletons(key_points)
             model = self.model
             key2d=[]
 
@@ -94,12 +89,6 @@ class Inference():
             key_points = np.array(key_points)
             x1 = key_points[..., 0]
             y1 = key_points[..., 1]
-
-            for i in range(15):
-                if x1[i] == 0:
-                    x1[i] = x_median[i]
-                if y1[i] == 0:
-                    y1[i] = y_median[i]
 
             try:
                 x = [x1[8], x1[1], x1[0],
@@ -127,9 +116,23 @@ class Inference():
 
                 inpt = np.concatenate((x_std, y_std))
                 inpt = inpt.reshape(1, len(inpt))
+                # print("start_predict")
                 output = model.predict(inpt)
-                z = output[0]
 
+                # print("end_predicts")
+                # print(output)
+                z = output[0]
+                """
+                inpt_=np.append(inpt_,inpt,axis=0)
+                if num > 2:
+                    # print("inpt_")
+                    # print(inpt_)
+                    output = model.predict(inpt_)
+                    # print(output)
+                    # return
+                    z = output[0]
+                continue
+                """
                 for k in range(len(z)):
                     z[k] = abs((z[k] * ((sigma_x + sigma_y) / 2)))
 

@@ -1,0 +1,859 @@
+2022-09-21 11:35:24,747: PyTorch version: 1.12.1+cpu
+2022-09-21 11:35:24,747: CUDA version: None
+2022-09-21 11:35:24,748: 0 GPUs, default cpu
+2022-09-21 11:35:24,749: {'GAN_noise_size': 0,
+ 'batch_size': 128,
+ 'config': 'config/multimodal_context.yml',
+ 'discriminator_lr_weight': 0.2,
+ 'dropout_prob': 0.3,
+ 'epochs': 100,
+ 'eval_net_path': 'output/train_h36m_gesture_autoencoder/gesture_autoencoder_checkpoint_best.bin',
+ 'freeze_wordembed': False,
+ 'hidden_size': 300,
+ 'input_context': 'text',
+ 'learning_rate': 0.0005,
+ 'loader_workers': 0,
+ 'loss_gan_weight': 5.0,
+ 'loss_kld_weight': 0.1,
+ 'loss_reg_weight': 0.05,
+ 'loss_regression_weight': 500.0,
+ 'loss_warmup': 10,
+ 'mean_dir_vec': [[0.02638458673845107],
+                  [-0.9996429354980532],
+                  [-0.0042255285440260665],
+                  [-0.05515719653732151],
+                  [-0.998477242305561],
+                  [-0.0009382259991350181],
+                  [-0.05515719653732151],
+                  [-0.998477242305561],
+                  [-0.0009382259991350181],
+                  [-0.9998449420671681],
+                  [0.00526838346577679],
+                  [-0.016802855660830836],
+                  [-0.22902108494722262],
+                  [0.9734208296178352],
+                  [-0.0011095565431657925],
+                  [0.9526732849792824],
+                  [0.30394367621050383],
+                  [0.005643915168351122],
+                  [0.9997473113728224],
+                  [0.00042023293770663254],
+                  [0.022475248765942698],
+                  [0.16808688825858356],
+                  [0.9857617079287365],
+                  [0.00454457665429367],
+                  [-0.9643145928309926],
+                  [0.2647450081558383],
+                  [-0.002728866021263983]],
+ 'mean_pose': [[-0.01521560423345251],
+               [0.5764794208104393],
+               [0.002436800342578793],
+               [0.0],
+               [0.0],
+               [0.0],
+               [-0.007986182708176807],
+               [-0.14456901705678968],
+               [-0.0001358452699020705],
+               [-0.015972365416353614],
+               [-0.28913803411357936],
+               [-0.000271690539804141],
+               [-0.24671332220948072],
+               [0.001299981960030731],
+               [-0.004146131233228229],
+               [-0.333958613543517],
+               [0.3721234102491703],
+               [-0.004568815388629877],
+               [-0.22680140907489543],
+               [0.4063111587377214],
+               [-0.00393398476911512],
+               [0.24830521194410135],
+               [0.00010437240238221092],
+               [0.005582131949582869],
+               [0.313711722228135],
+               [0.38368713697863677],
+               [0.007350532226101516],
+               [0.16962893217516073],
+               [0.4232439369184838],
+               [0.006942799487275916]],
+ 'model': 'multimodal_context',
+ 'model_save_path': 'output/train_multimodal_context',
+ 'motion_resampling_framerate': 15,
+ 'n_layers': 4,
+ 'n_poses': 34,
+ 'n_pre_poses': 4,
+ 'name': 'multimodal_context',
+ 'pose_representation': '3d_vec',
+ 'random_seed': -1,
+ 'save_result_video': True,
+ 'subdivision_stride': 10,
+ 'test_data_path': ['data/youtube_dataset/lmdb_test'],
+ 'train_data_path': ['data/youtube_dataset/lmdb_train'],
+ 'val_data_path': ['data/youtube_dataset/lmdb_val'],
+ 'wordembed_dim': 300,
+ 'wordembed_path': 'data/fasttext/cc.ko.300.bin',
+ 'z_type': 'speaker'}
+2022-09-21 11:35:24,751: Reading data 'data/youtube_dataset/lmdb_train'...
+2022-09-21 11:35:24,751: Creating the dataset cache...
+2022-09-21 11:36:53,870:   building a speaker model...
+2022-09-21 11:36:53,960:     indexed 136 videos
+2022-09-21 11:36:53,962: Reading data 'data/youtube_dataset/lmdb_val'...
+2022-09-21 11:36:53,962: Creating the dataset cache...
+2022-09-21 11:37:06,677: Reading data 'data/youtube_dataset/lmdb_test'...
+2022-09-21 11:37:06,677: Creating the dataset cache...
+2022-09-21 11:37:21,338:   building a language model...
+2022-09-21 11:37:21,339:     indexing words from data/youtube_dataset/lmdb_train
+2022-09-21 11:37:21,451:     indexed 11616 words
+2022-09-21 11:37:21,451:     indexing words from data/youtube_dataset/lmdb_val
+2022-09-21 11:37:21,469:     indexed 12656 words
+2022-09-21 11:37:21,469:     indexing words from data/youtube_dataset/lmdb_test
+2022-09-21 11:37:21,490:     indexed 13901 words
+2022-09-21 11:37:21,490:   loading word vectors from 'data/fasttext/cc.ko.300.bin'...
+2022-09-21 11:37:39,566: [VAL] loss: 0.162, joint mae: 0.05728, accel diff: 0.00773, F_G_D: 1083.799, feat_D: 139.335 / 10.7s
+2022-09-21 11:37:39,567:   *** BEST VALIDATION LOSS: 1083.799
+2022-09-21 11:37:39,775: Saved the checkpoint
+2022-09-21 11:37:44,060: saved sample videos, took 4.3s
+2022-09-21 11:38:56,979: EP 0 ( 44) |   1m 28s, 76 samples/s | loss: 48.541, KLD: 0.011, DIV_REG: -0.987, 
+2022-09-21 11:40:11,311: EP 0 ( 88) |   2m 42s, 78 samples/s | loss: 38.840, KLD: 0.010, DIV_REG: -0.949, 
+2022-09-21 11:41:25,269: EP 0 (132) |   3m 56s, 76 samples/s | loss: 33.808, KLD: 0.010, DIV_REG: -0.646, 
+2022-09-21 11:42:39,761: EP 0 (176) |   5m 10s, 74 samples/s | loss: 30.820, KLD: 0.009, DIV_REG: -0.510, 
+2022-09-21 11:43:54,240: EP 0 (220) |   6m 25s, 76 samples/s | loss: 29.779, KLD: 0.009, DIV_REG: -0.457, 
+2022-09-21 11:44:12,356: [VAL] loss: 0.079, joint mae: 0.02949, accel diff: 0.00778, FGD: 434.157, feat_D: 106.278 / 11.3s
+2022-09-21 11:44:12,357:   *** BEST VALIDATION LOSS: 434.157
+2022-09-21 11:44:12,542: Saved the checkpoint
+2022-09-21 11:45:27,565: EP 1 ( 44) |   7m 58s, 75 samples/s | loss: 29.432, KLD: 0.009, DIV_REG: -0.413, 
+2022-09-21 11:46:42,889: EP 1 ( 88) |   9m 14s, 73 samples/s | loss: 28.505, KLD: 0.009, DIV_REG: -0.399, 
+2022-09-21 11:47:58,381: EP 1 (132) |  10m 29s, 76 samples/s | loss: 28.538, KLD: 0.009, DIV_REG: -0.393, 
+2022-09-21 11:49:14,254: EP 1 (176) |  11m 45s, 73 samples/s | loss: 27.679, KLD: 0.009, DIV_REG: -0.381, 
+2022-09-21 11:50:29,190: EP 1 (220) |   13m 0s, 75 samples/s | loss: 27.734, KLD: 0.009, DIV_REG: -0.382, 
+2022-09-21 11:50:47,346: [VAL] loss: 0.076, joint mae: 0.02742, accel diff: 0.00774, FGD: 380.799, feat_D: 107.109 / 11.3s
+2022-09-21 11:50:47,347:   *** BEST VALIDATION LOSS: 380.799
+2022-09-21 11:50:47,535: Saved the checkpoint
+2022-09-21 11:52:02,372: EP 2 ( 44) |  14m 33s, 76 samples/s | loss: 26.761, KLD: 0.009, DIV_REG: -0.377, 
+2022-09-21 11:53:17,500: EP 2 ( 88) |  15m 48s, 75 samples/s | loss: 26.842, KLD: 0.010, DIV_REG: -0.389, 
+2022-09-21 11:54:32,909: EP 2 (132) |   17m 4s, 73 samples/s | loss: 26.826, KLD: 0.010, DIV_REG: -0.388, 
+2022-09-21 11:55:48,347: EP 2 (176) |  18m 19s, 76 samples/s | loss: 26.583, KLD: 0.010, DIV_REG: -0.385, 
+2022-09-21 11:57:04,030: EP 2 (220) |  19m 35s, 74 samples/s | loss: 26.847, KLD: 0.010, DIV_REG: -0.367, 
+2022-09-21 11:57:22,265: [VAL] loss: 0.075, joint mae: 0.02724, accel diff: 0.00771, FGD: 339.367, feat_D: 107.507 / 11.4s
+2022-09-21 11:57:22,296:   *** BEST VALIDATION LOSS: 339.367
+2022-09-21 11:57:22,484: Saved the checkpoint
+2022-09-21 11:58:38,275: EP 3 ( 44) |   21m 9s, 74 samples/s | loss: 25.837, KLD: 0.011, DIV_REG: -0.386, 
+2022-09-21 11:59:54,651: EP 3 ( 88) |  22m 25s, 73 samples/s | loss: 25.594, KLD: 0.011, DIV_REG: -0.372, 
+2022-09-21 12:01:12,051: EP 3 (132) |  23m 43s, 74 samples/s | loss: 25.696, KLD: 0.012, DIV_REG: -0.382, 
+2022-09-21 12:02:29,601: EP 3 (176) |   25m 0s, 74 samples/s | loss: 25.632, KLD: 0.012, DIV_REG: -0.373, 
+2022-09-21 12:03:47,424: EP 3 (220) |  26m 18s, 71 samples/s | loss: 25.969, KLD: 0.013, DIV_REG: -0.389, 
+2022-09-21 12:04:06,171: [VAL] loss: 0.075, joint mae: 0.02732, accel diff: 0.00772, FGD: 286.330, feat_D: 108.463 / 11.7s
+2022-09-21 12:04:06,172:   *** BEST VALIDATION LOSS: 286.330
+2022-09-21 12:04:06,373: Saved the checkpoint
+2022-09-21 12:05:24,150: EP 4 ( 44) |  27m 55s, 73 samples/s | loss: 25.093, KLD: 0.014, DIV_REG: -0.388, 
+2022-09-21 12:06:42,099: EP 4 ( 88) |  29m 13s, 71 samples/s | loss: 25.127, KLD: 0.015, DIV_REG: -0.403, 
+2022-09-21 12:08:01,034: EP 4 (132) |  30m 32s, 71 samples/s | loss: 25.156, KLD: 0.016, DIV_REG: -0.396, 
+2022-09-21 12:09:19,365: EP 4 (176) |  31m 50s, 73 samples/s | loss: 25.067, KLD: 0.017, DIV_REG: -0.405, 
+2022-09-21 12:10:37,450: EP 4 (220) |   33m 8s, 74 samples/s | loss: 25.307, KLD: 0.018, DIV_REG: -0.422, 
+2022-09-21 12:10:56,330: [VAL] loss: 0.076, joint mae: 0.02770, accel diff: 0.00773, FGD: 268.604, feat_D: 110.442 / 11.7s
+2022-09-21 12:10:56,331:   *** BEST VALIDATION LOSS: 268.604
+2022-09-21 12:10:56,529: Saved the checkpoint
+2022-09-21 12:12:14,771: EP 5 ( 44) |  34m 45s, 71 samples/s | loss: 24.454, KLD: 0.019, DIV_REG: -0.436, 
+2022-09-21 12:13:32,837: EP 5 ( 88) |   36m 4s, 73 samples/s | loss: 24.973, KLD: 0.020, DIV_REG: -0.453, 
+2022-09-21 12:14:51,119: EP 5 (132) |  37m 22s, 72 samples/s | loss: 24.660, KLD: 0.021, DIV_REG: -0.464, 
+2022-09-21 12:16:09,649: EP 5 (176) |  38m 40s, 71 samples/s | loss: 24.198, KLD: 0.022, DIV_REG: -0.444, 
+2022-09-21 12:17:28,182: EP 5 (220) |  39m 59s, 74 samples/s | loss: 24.571, KLD: 0.023, DIV_REG: -0.455, 
+2022-09-21 12:17:47,160: [VAL] loss: 0.076, joint mae: 0.02769, accel diff: 0.00771, FGD: 235.299, feat_D: 110.084 / 11.7s
+2022-09-21 12:17:47,161:   *** BEST VALIDATION LOSS: 235.299
+2022-09-21 12:17:47,361: Saved the checkpoint
+2022-09-21 12:19:06,422: EP 6 ( 44) |  41m 37s, 71 samples/s | loss: 24.191, KLD: 0.024, DIV_REG: -0.465, 
+2022-09-21 12:20:25,339: EP 6 ( 88) |  42m 56s, 70 samples/s | loss: 23.956, KLD: 0.026, DIV_REG: -0.485, 
+2022-09-21 12:21:44,503: EP 6 (132) |  44m 15s, 72 samples/s | loss: 24.209, KLD: 0.027, DIV_REG: -0.485, 
+2022-09-21 12:23:04,064: EP 6 (176) |  45m 35s, 70 samples/s | loss: 24.198, KLD: 0.029, DIV_REG: -0.518, 
+2022-09-21 12:24:23,854: EP 6 (220) |  46m 55s, 72 samples/s | loss: 24.176, KLD: 0.031, DIV_REG: -0.502, 
+2022-09-21 12:24:42,939: [VAL] loss: 0.077, joint mae: 0.02828, accel diff: 0.00772, FGD: 223.516, feat_D: 112.130 / 11.8s
+2022-09-21 12:24:42,940:   *** BEST VALIDATION LOSS: 223.516
+2022-09-21 12:24:43,144: Saved the checkpoint
+2022-09-21 12:26:02,830: EP 7 ( 44) |  48m 34s, 70 samples/s | loss: 23.866, KLD: 0.032, DIV_REG: -0.536, 
+2022-09-21 12:27:22,353: EP 7 ( 88) |  49m 53s, 71 samples/s | loss: 23.838, KLD: 0.033, DIV_REG: -0.555, 
+2022-09-21 12:28:41,918: EP 7 (132) |  51m 13s, 73 samples/s | loss: 23.624, KLD: 0.035, DIV_REG: -0.531, 
+2022-09-21 12:30:01,975: EP 7 (176) |  52m 33s, 69 samples/s | loss: 23.654, KLD: 0.037, DIV_REG: -0.559, 
+2022-09-21 12:31:22,167: EP 7 (220) |  53m 53s, 72 samples/s | loss: 23.762, KLD: 0.038, DIV_REG: -0.575, 
+2022-09-21 12:31:41,297: [VAL] loss: 0.076, joint mae: 0.02786, accel diff: 0.00768, FGD: 208.132, feat_D: 112.035 / 11.8s
+2022-09-21 12:31:41,298:   *** BEST VALIDATION LOSS: 208.132
+2022-09-21 12:31:41,479: Saved the checkpoint
+2022-09-21 12:33:01,768: EP 8 ( 44) |  55m 32s, 70 samples/s | loss: 23.188, KLD: 0.040, DIV_REG: -0.569, 
+2022-09-21 12:34:22,354: EP 8 ( 88) |  56m 53s, 69 samples/s | loss: 23.497, KLD: 0.041, DIV_REG: -0.611, 
+2022-09-21 12:35:43,059: EP 8 (132) |  58m 14s, 71 samples/s | loss: 23.370, KLD: 0.043, DIV_REG: -0.617, 
+2022-09-21 12:37:03,714: EP 8 (176) |  59m 34s, 69 samples/s | loss: 23.414, KLD: 0.044, DIV_REG: -0.623, 
+2022-09-21 12:38:24,424: EP 8 (220) |  60m 55s, 69 samples/s | loss: 23.189, KLD: 0.046, DIV_REG: -0.639, 
+2022-09-21 12:38:43,467: [VAL] loss: 0.077, joint mae: 0.02832, accel diff: 0.00768, FGD: 215.066, feat_D: 113.205 / 11.8s
+2022-09-21 12:38:43,468:   best validation loss so far: 208.132 at EPOCH 8
+2022-09-21 12:40:04,205: EP 9 ( 44) |  62m 35s, 71 samples/s | loss: 22.960, KLD: 0.047, DIV_REG: -0.615, 
+2022-09-21 12:41:24,982: EP 9 ( 88) |  63m 56s, 69 samples/s | loss: 22.866, KLD: 0.049, DIV_REG: -0.665, 
+2022-09-21 12:42:45,982: EP 9 (132) |  65m 17s, 68 samples/s | loss: 22.845, KLD: 0.051, DIV_REG: -0.678, 
+2022-09-21 12:44:07,131: EP 9 (176) |  66m 38s, 72 samples/s | loss: 23.143, KLD: 0.053, DIV_REG: -0.705, 
+2022-09-21 12:45:28,609: EP 9 (220) |  67m 59s, 69 samples/s | loss: 23.297, KLD: 0.053, DIV_REG: -0.704, 
+2022-09-21 12:45:47,941: [VAL] loss: 0.076, joint mae: 0.02791, accel diff: 0.00764, FGD: 191.082, feat_D: 112.385 / 11.9s
+2022-09-21 12:45:47,942:   *** BEST VALIDATION LOSS: 191.082
+2022-09-21 12:45:48,139: Saved the checkpoint
+2022-09-21 12:46:09,109: saved sample videos, took 21.0s
+2022-09-21 12:47:30,686: EP 10 ( 44) |   70m 1s, 69 samples/s | loss: 22.473, KLD: 0.055, DIV_REG: -0.711, 
+2022-09-21 12:48:52,377: EP 10 ( 88) |  71m 23s, 70 samples/s | loss: 22.830, KLD: 0.057, DIV_REG: -0.759, 
+2022-09-21 12:50:14,373: EP 10 (132) |  72m 45s, 68 samples/s | loss: 22.801, KLD: 0.058, DIV_REG: -0.750, 
+2022-09-21 12:51:36,347: EP 10 (176) |   74m 7s, 67 samples/s | loss: 22.684, KLD: 0.059, DIV_REG: -0.787, 
+2022-09-21 12:52:58,665: EP 10 (220) |  75m 29s, 67 samples/s | loss: 22.577, KLD: 0.060, DIV_REG: -0.765, 
+2022-09-21 12:53:18,067: [VAL] loss: 0.077, joint mae: 0.02847, accel diff: 0.00764, FGD: 176.613, feat_D: 113.926 / 11.9s
+2022-09-21 12:53:18,068:   *** BEST VALIDATION LOSS: 176.613
+2022-09-21 12:53:18,259: Saved the checkpoint
+2022-09-21 12:55:33,340: EP 11 ( 44) |   78m 4s, 42 samples/s | loss: 22.340, gen: 3.430, dis: 1.387, KLD: 0.062, DIV_REG: -0.782, 
+2022-09-21 12:57:48,974: EP 11 ( 88) |  80m 20s, 43 samples/s | loss: 22.511, gen: 3.466, dis: 1.386, KLD: 0.063, DIV_REG: -0.805, 
+2022-09-21 13:00:04,978: EP 11 (132) |  82m 36s, 43 samples/s | loss: 22.505, gen: 3.468, dis: 1.385, KLD: 0.065, DIV_REG: -0.804, 
+2022-09-21 13:02:22,285: EP 11 (176) |  84m 53s, 42 samples/s | loss: 22.494, gen: 3.639, dis: 1.356, KLD: 0.066, DIV_REG: -0.804, 
+2022-09-21 13:04:39,852: EP 11 (220) |  87m 11s, 42 samples/s | loss: 22.945, gen: 4.003, dis: 1.307, KLD: 0.068, DIV_REG: -0.878, 
+2022-09-21 13:05:04,041: [VAL] loss: 0.081, joint mae: 0.02938, accel diff: 0.00934, FGD: 161.448, feat_D: 116.028 / 11.8s
+2022-09-21 13:05:04,044:   *** BEST VALIDATION LOSS: 161.448
+2022-09-21 13:05:04,232: Saved the checkpoint
+2022-09-21 13:07:20,763: EP 12 ( 44) |  89m 51s, 41 samples/s | loss: 22.992, gen: 4.117, dis: 1.316, KLD: 0.069, DIV_REG: -0.956, 
+2022-09-21 13:09:37,997: EP 12 ( 88) |   92m 9s, 41 samples/s | loss: 22.718, gen: 3.802, dis: 1.339, KLD: 0.071, DIV_REG: -0.954, 
+2022-09-21 13:11:55,138: EP 12 (132) |  94m 26s, 41 samples/s | loss: 22.635, gen: 4.030, dis: 1.295, KLD: 0.073, DIV_REG: -0.991, 
+2022-09-21 13:14:12,740: EP 12 (176) |  96m 43s, 41 samples/s | loss: 22.773, gen: 3.925, dis: 1.326, KLD: 0.074, DIV_REG: -1.056, 
+2022-09-21 13:16:30,305: EP 12 (220) |   99m 1s, 41 samples/s | loss: 22.786, gen: 3.906, dis: 1.322, KLD: 0.075, DIV_REG: -1.063, 
+2022-09-21 13:16:54,566: [VAL] loss: 0.078, joint mae: 0.02856, accel diff: 0.00796, FGD: 159.263, feat_D: 114.009 / 11.9s
+2022-09-21 13:16:54,567:   *** BEST VALIDATION LOSS: 159.263
+2022-09-21 13:16:54,763: Saved the checkpoint
+2022-09-21 13:19:11,900: EP 13 ( 44) | 101m 43s, 41 samples/s | loss: 22.332, gen: 3.932, dis: 1.316, KLD: 0.077, DIV_REG: -1.090, 
+2022-09-21 13:21:29,233: EP 13 ( 88) |  104m 0s, 41 samples/s | loss: 22.688, gen: 3.913, dis: 1.329, KLD: 0.079, DIV_REG: -1.161, 
+2022-09-21 13:23:46,601: EP 13 (132) | 106m 17s, 41 samples/s | loss: 22.868, gen: 4.079, dis: 1.290, KLD: 0.080, DIV_REG: -1.167, 
+2022-09-21 13:26:03,971: EP 13 (176) | 108m 35s, 40 samples/s | loss: 23.056, gen: 3.974, dis: 1.333, KLD: 0.081, DIV_REG: -1.213, 
+2022-09-21 13:28:21,513: EP 13 (220) | 110m 52s, 41 samples/s | loss: 22.666, gen: 3.961, dis: 1.309, KLD: 0.082, DIV_REG: -1.192, 
+2022-09-21 13:28:45,972: [VAL] loss: 0.081, joint mae: 0.02943, accel diff: 0.00820, FGD: 120.949, feat_D: 119.190 / 11.9s
+2022-09-21 13:28:45,973:   *** BEST VALIDATION LOSS: 120.949
+2022-09-21 13:28:46,163: Saved the checkpoint
+2022-09-21 13:31:03,997: EP 14 ( 44) | 113m 35s, 41 samples/s | loss: 22.529, gen: 4.043, dis: 1.314, KLD: 0.084, DIV_REG: -1.211, 
+2022-09-21 13:33:21,381: EP 14 ( 88) | 115m 52s, 41 samples/s | loss: 22.365, gen: 3.840, dis: 1.331, KLD: 0.086, DIV_REG: -1.275, 
+2022-09-21 13:35:38,983: EP 14 (132) | 118m 10s, 41 samples/s | loss: 22.401, gen: 4.156, dis: 1.260, KLD: 0.086, DIV_REG: -1.226, 
+2022-09-21 13:37:56,558: EP 14 (176) | 120m 27s, 41 samples/s | loss: 22.748, gen: 4.028, dis: 1.328, KLD: 0.087, DIV_REG: -1.267, 
+2022-09-21 13:40:14,000: EP 14 (220) | 122m 45s, 41 samples/s | loss: 22.955, gen: 3.987, dis: 1.302, KLD: 0.090, DIV_REG: -1.339, 
+2022-09-21 13:40:38,542: [VAL] loss: 0.079, joint mae: 0.02915, accel diff: 0.00904, FGD: 120.807, feat_D: 117.886 / 11.9s
+2022-09-21 13:40:38,544:   *** BEST VALIDATION LOSS: 120.807
+2022-09-21 13:40:38,733: Saved the checkpoint
+2022-09-21 13:42:56,430: EP 15 ( 44) | 125m 27s, 41 samples/s | loss: 22.254, gen: 3.995, dis: 1.307, KLD: 0.090, DIV_REG: -1.339, 
+2022-09-21 13:45:13,765: EP 15 ( 88) | 127m 44s, 40 samples/s | loss: 22.158, gen: 3.982, dis: 1.313, KLD: 0.091, DIV_REG: -1.328, 
+2022-09-21 13:47:31,475: EP 15 (132) |  130m 2s, 40 samples/s | loss: 22.964, gen: 4.026, dis: 1.295, KLD: 0.092, DIV_REG: -1.395, 
+2022-09-21 13:49:48,878: EP 15 (176) | 132m 20s, 41 samples/s | loss: 22.573, gen: 4.026, dis: 1.307, KLD: 0.093, DIV_REG: -1.438, 
+2022-09-21 13:52:06,310: EP 15 (220) | 134m 37s, 41 samples/s | loss: 22.673, gen: 4.071, dis: 1.300, KLD: 0.095, DIV_REG: -1.426, 
+2022-09-21 13:52:30,825: [VAL] loss: 0.084, joint mae: 0.03065, accel diff: 0.01025, FGD: 98.755, feat_D: 125.509 / 11.9s
+2022-09-21 13:52:30,826:   *** BEST VALIDATION LOSS: 98.755
+2022-09-21 13:52:31,022: Saved the checkpoint
+2022-09-21 13:54:48,937: EP 16 ( 44) | 137m 20s, 43 samples/s | loss: 22.214, gen: 4.008, dis: 1.312, KLD: 0.096, DIV_REG: -1.458, 
+2022-09-21 13:57:06,573: EP 16 ( 88) | 139m 37s, 43 samples/s | loss: 22.084, gen: 3.988, dis: 1.305, KLD: 0.097, DIV_REG: -1.461, 
+2022-09-21 13:59:24,498: EP 16 (132) | 141m 55s, 43 samples/s | loss: 22.431, gen: 3.994, dis: 1.303, KLD: 0.098, DIV_REG: -1.499, 
+2022-09-21 14:01:42,687: EP 16 (176) | 144m 13s, 42 samples/s | loss: 22.497, gen: 3.986, dis: 1.315, KLD: 0.099, DIV_REG: -1.444, 
+2022-09-21 14:04:00,381: EP 16 (220) | 146m 31s, 41 samples/s | loss: 22.630, gen: 4.026, dis: 1.301, KLD: 0.100, DIV_REG: -1.527, 
+2022-09-21 14:04:24,499: [VAL] loss: 0.082, joint mae: 0.02995, accel diff: 0.00943, FGD: 92.812, feat_D: 121.472 / 11.9s
+2022-09-21 14:04:24,500:   *** BEST VALIDATION LOSS: 92.812
+2022-09-21 14:04:24,702: Saved the checkpoint
+2022-09-21 14:06:42,100: EP 17 ( 44) | 149m 13s, 41 samples/s | loss: 21.990, gen: 3.997, dis: 1.307, KLD: 0.101, DIV_REG: -1.533, 
+2022-09-21 14:08:59,841: EP 17 ( 88) | 151m 31s, 41 samples/s | loss: 22.177, gen: 4.052, dis: 1.304, KLD: 0.102, DIV_REG: -1.554, 
+2022-09-21 14:11:17,451: EP 17 (132) | 153m 48s, 41 samples/s | loss: 22.169, gen: 4.017, dis: 1.310, KLD: 0.103, DIV_REG: -1.504, 
+2022-09-21 14:13:35,126: EP 17 (176) |  156m 6s, 41 samples/s | loss: 22.451, gen: 4.028, dis: 1.310, KLD: 0.103, DIV_REG: -1.542, 
+2022-09-21 14:15:52,757: EP 17 (220) | 158m 23s, 41 samples/s | loss: 22.634, gen: 3.970, dis: 1.299, KLD: 0.103, DIV_REG: -1.623, 
+2022-09-21 14:16:17,136: [VAL] loss: 0.081, joint mae: 0.02961, accel diff: 0.00960, FGD: 91.639, feat_D: 120.857 / 11.9s
+2022-09-21 14:16:17,137:   *** BEST VALIDATION LOSS: 91.639
+2022-09-21 14:16:17,328: Saved the checkpoint
+2022-09-21 14:18:35,156: EP 18 ( 44) |  161m 6s, 41 samples/s | loss: 22.161, gen: 3.985, dis: 1.315, KLD: 0.105, DIV_REG: -1.633, 
+2022-09-21 14:20:52,873: EP 18 ( 88) | 163m 24s, 41 samples/s | loss: 21.824, gen: 4.007, dis: 1.309, KLD: 0.105, DIV_REG: -1.641, 
+2022-09-21 14:23:10,787: EP 18 (132) | 165m 41s, 41 samples/s | loss: 21.982, gen: 3.973, dis: 1.307, KLD: 0.106, DIV_REG: -1.724, 
+2022-09-21 14:25:29,079: EP 18 (176) |  168m 0s, 40 samples/s | loss: 21.832, gen: 4.029, dis: 1.303, KLD: 0.107, DIV_REG: -1.675, 
+2022-09-21 14:27:46,963: EP 18 (220) | 170m 18s, 41 samples/s | loss: 22.359, gen: 4.015, dis: 1.305, KLD: 0.108, DIV_REG: -1.685, 
+2022-09-21 14:28:11,410: [VAL] loss: 0.082, joint mae: 0.02986, accel diff: 0.01004, FGD: 83.442, feat_D: 121.754 / 11.8s
+2022-09-21 14:28:11,413:   *** BEST VALIDATION LOSS: 83.442
+2022-09-21 14:28:11,607: Saved the checkpoint
+2022-09-21 14:30:29,522: EP 19 ( 44) |  173m 0s, 40 samples/s | loss: 21.748, gen: 4.017, dis: 1.300, KLD: 0.109, DIV_REG: -1.731, 
+2022-09-21 14:32:47,569: EP 19 ( 88) | 175m 18s, 41 samples/s | loss: 21.895, gen: 4.010, dis: 1.312, KLD: 0.110, DIV_REG: -1.769, 
+2022-09-21 14:35:05,784: EP 19 (132) | 177m 36s, 40 samples/s | loss: 21.574, gen: 4.035, dis: 1.303, KLD: 0.111, DIV_REG: -1.726, 
+2022-09-21 14:37:23,698: EP 19 (176) | 179m 54s, 41 samples/s | loss: 22.069, gen: 4.014, dis: 1.307, KLD: 0.112, DIV_REG: -1.804, 
+2022-09-21 14:39:41,777: EP 19 (220) | 182m 12s, 40 samples/s | loss: 21.978, gen: 4.032, dis: 1.309, KLD: 0.112, DIV_REG: -1.757, 
+2022-09-21 14:40:06,492: [VAL] loss: 0.083, joint mae: 0.03061, accel diff: 0.00976, FGD: 73.466, feat_D: 124.730 / 11.9s
+2022-09-21 14:40:06,493:   *** BEST VALIDATION LOSS: 73.466
+2022-09-21 14:40:06,683: Saved the checkpoint
+2022-09-21 14:40:27,611: saved sample videos, took 20.9s
+2022-09-21 14:42:45,406: EP 20 ( 44) | 185m 16s, 41 samples/s | loss: 21.312, gen: 4.020, dis: 1.311, KLD: 0.113, DIV_REG: -1.753, 
+2022-09-21 14:45:03,190: EP 20 ( 88) | 187m 34s, 42 samples/s | loss: 21.372, gen: 4.017, dis: 1.310, KLD: 0.115, DIV_REG: -1.746, 
+2022-09-21 14:47:21,154: EP 20 (132) | 189m 52s, 43 samples/s | loss: 21.753, gen: 4.038, dis: 1.312, KLD: 0.115, DIV_REG: -1.894, 
+2022-09-21 14:49:39,245: EP 20 (176) | 192m 10s, 42 samples/s | loss: 21.844, gen: 4.001, dis: 1.305, KLD: 0.116, DIV_REG: -1.832, 
+2022-09-21 14:51:57,024: EP 20 (220) | 194m 28s, 43 samples/s | loss: 21.356, gen: 4.001, dis: 1.311, KLD: 0.117, DIV_REG: -1.817, 
+2022-09-21 14:52:21,418: [VAL] loss: 0.086, joint mae: 0.03117, accel diff: 0.00925, FGD: 54.492, feat_D: 128.918 / 11.9s
+2022-09-21 14:52:21,419:   *** BEST VALIDATION LOSS: 54.492
+2022-09-21 14:52:21,623: Saved the checkpoint
+2022-09-21 14:54:39,485: EP 21 ( 44) | 197m 10s, 41 samples/s | loss: 21.199, gen: 4.019, dis: 1.307, KLD: 0.118, DIV_REG: -1.885, 
+2022-09-21 14:56:57,488: EP 21 ( 88) | 199m 28s, 41 samples/s | loss: 21.732, gen: 3.955, dis: 1.323, KLD: 0.118, DIV_REG: -1.954, 
+2022-09-21 14:59:15,320: EP 21 (132) | 201m 46s, 40 samples/s | loss: 20.980, gen: 3.942, dis: 1.314, KLD: 0.118, DIV_REG: -1.893, 
+2022-09-21 15:01:33,533: EP 21 (176) |  204m 4s, 40 samples/s | loss: 21.469, gen: 4.021, dis: 1.315, KLD: 0.119, DIV_REG: -1.887, 
+2022-09-21 15:03:52,259: EP 21 (220) | 206m 23s, 40 samples/s | loss: 21.557, gen: 3.936, dis: 1.315, KLD: 0.120, DIV_REG: -1.946, 
+2022-09-21 15:04:16,969: [VAL] loss: 0.084, joint mae: 0.03066, accel diff: 0.00917, FGD: 68.101, feat_D: 126.719 / 12.2s
+2022-09-21 15:04:16,970:   best validation loss so far: 54.492 at EPOCH 21
+2022-09-21 15:06:37,388: EP 22 ( 44) |  209m 8s, 41 samples/s | loss: 21.125, gen: 3.998, dis: 1.315, KLD: 0.120, DIV_REG: -1.950, 
+2022-09-21 15:08:55,030: EP 22 ( 88) | 211m 26s, 40 samples/s | loss: 20.758, gen: 3.970, dis: 1.318, KLD: 0.121, DIV_REG: -1.931, 
+2022-09-21 15:11:13,047: EP 22 (132) | 213m 44s, 40 samples/s | loss: 21.039, gen: 3.936, dis: 1.314, KLD: 0.122, DIV_REG: -1.956, 
+2022-09-21 15:13:30,647: EP 22 (176) |  216m 1s, 41 samples/s | loss: 21.284, gen: 3.999, dis: 1.315, KLD: 0.122, DIV_REG: -2.014, 
+2022-09-21 15:15:48,348: EP 22 (220) | 218m 19s, 41 samples/s | loss: 21.095, gen: 3.952, dis: 1.317, KLD: 0.122, DIV_REG: -2.044, 
+2022-09-21 15:16:12,930: [VAL] loss: 0.086, joint mae: 0.03133, accel diff: 0.00986, FGD: 74.468, feat_D: 128.295 / 11.9s
+2022-09-21 15:16:12,931:   best validation loss so far: 54.492 at EPOCH 21
+2022-09-21 15:18:30,849: EP 23 ( 44) |  221m 2s, 40 samples/s | loss: 20.646, gen: 3.979, dis: 1.322, KLD: 0.123, DIV_REG: -2.024, 
+2022-09-21 15:20:48,662: EP 23 ( 88) | 223m 19s, 40 samples/s | loss: 20.982, gen: 3.955, dis: 1.321, KLD: 0.124, DIV_REG: -2.073, 
+2022-09-21 15:23:06,616: EP 23 (132) | 225m 37s, 41 samples/s | loss: 20.620, gen: 3.905, dis: 1.322, KLD: 0.125, DIV_REG: -2.058, 
+2022-09-21 15:25:24,453: EP 23 (176) | 227m 55s, 41 samples/s | loss: 21.131, gen: 3.958, dis: 1.313, KLD: 0.125, DIV_REG: -2.080, 
+2022-09-21 15:27:42,320: EP 23 (220) | 230m 13s, 41 samples/s | loss: 21.002, gen: 3.945, dis: 1.324, KLD: 0.126, DIV_REG: -2.056, 
+2022-09-21 15:28:06,863: [VAL] loss: 0.084, joint mae: 0.03085, accel diff: 0.00940, FGD: 59.131, feat_D: 126.314 / 11.9s
+2022-09-21 15:28:06,864:   best validation loss so far: 54.492 at EPOCH 21
+2022-09-21 15:30:24,423: EP 24 ( 44) | 232m 55s, 41 samples/s | loss: 20.221, gen: 3.916, dis: 1.317, KLD: 0.127, DIV_REG: -2.099, 
+2022-09-21 15:32:42,241: EP 24 ( 88) | 235m 13s, 41 samples/s | loss: 20.688, gen: 3.930, dis: 1.327, KLD: 0.127, DIV_REG: -2.165, 
+2022-09-21 15:35:00,209: EP 24 (132) | 237m 31s, 41 samples/s | loss: 20.571, gen: 3.951, dis: 1.321, KLD: 0.128, DIV_REG: -2.164, 
+2022-09-21 15:37:17,961: EP 24 (176) | 239m 49s, 40 samples/s | loss: 21.076, gen: 3.915, dis: 1.328, KLD: 0.129, DIV_REG: -2.166, 
+2022-09-21 15:39:35,934: EP 24 (220) |  242m 7s, 41 samples/s | loss: 20.958, gen: 3.919, dis: 1.321, KLD: 0.130, DIV_REG: -2.197, 
+2022-09-21 15:40:00,423: [VAL] loss: 0.086, joint mae: 0.03125, accel diff: 0.01034, FGD: 55.191, feat_D: 128.136 / 11.9s
+2022-09-21 15:40:00,424:   best validation loss so far: 54.492 at EPOCH 21
+2022-09-21 15:42:18,068: EP 25 ( 44) | 244m 49s, 42 samples/s | loss: 20.150, gen: 3.894, dis: 1.326, KLD: 0.130, DIV_REG: -2.207, 
+2022-09-21 15:44:36,117: EP 25 ( 88) |  247m 7s, 43 samples/s | loss: 20.576, gen: 3.958, dis: 1.322, KLD: 0.131, DIV_REG: -2.172, 
+2022-09-21 15:46:54,030: EP 25 (132) | 249m 25s, 43 samples/s | loss: 20.373, gen: 3.975, dis: 1.322, KLD: 0.132, DIV_REG: -2.242, 
+2022-09-21 15:49:11,604: EP 25 (176) | 251m 42s, 43 samples/s | loss: 20.608, gen: 3.921, dis: 1.325, KLD: 0.132, DIV_REG: -2.265, 
+2022-09-21 15:51:29,644: EP 25 (220) |  254m 0s, 41 samples/s | loss: 20.245, gen: 3.943, dis: 1.318, KLD: 0.131, DIV_REG: -2.189, 
+2022-09-21 15:51:54,002: [VAL] loss: 0.085, joint mae: 0.03108, accel diff: 0.00983, FGD: 63.411, feat_D: 127.884 / 11.9s
+2022-09-21 15:51:54,005:   best validation loss so far: 54.492 at EPOCH 21
+2022-09-21 15:54:11,568: EP 26 ( 44) | 256m 42s, 41 samples/s | loss: 20.119, gen: 3.933, dis: 1.325, KLD: 0.132, DIV_REG: -2.231, 
+2022-09-21 15:56:29,183: EP 26 ( 88) |  259m 0s, 41 samples/s | loss: 19.904, gen: 3.912, dis: 1.324, KLD: 0.133, DIV_REG: -2.236, 
+2022-09-21 15:58:47,190: EP 26 (132) | 261m 18s, 41 samples/s | loss: 20.116, gen: 3.923, dis: 1.319, KLD: 0.133, DIV_REG: -2.258, 
+2022-09-21 16:01:05,168: EP 26 (176) | 263m 36s, 41 samples/s | loss: 20.376, gen: 3.889, dis: 1.320, KLD: 0.134, DIV_REG: -2.283, 
+2022-09-21 16:03:23,162: EP 26 (220) | 265m 54s, 41 samples/s | loss: 20.014, gen: 3.867, dis: 1.335, KLD: 0.134, DIV_REG: -2.299, 
+2022-09-21 16:03:47,405: [VAL] loss: 0.089, joint mae: 0.03237, accel diff: 0.01013, FGD: 48.229, feat_D: 131.123 / 11.8s
+2022-09-21 16:03:47,406:   *** BEST VALIDATION LOSS: 48.229
+2022-09-21 16:03:47,603: Saved the checkpoint
+2022-09-21 16:06:05,244: EP 27 ( 44) | 268m 36s, 40 samples/s | loss: 19.554, gen: 3.899, dis: 1.330, KLD: 0.135, DIV_REG: -2.263, 
+2022-09-21 16:08:23,005: EP 27 ( 88) | 270m 54s, 40 samples/s | loss: 19.699, gen: 3.872, dis: 1.326, KLD: 0.136, DIV_REG: -2.308, 
+2022-09-21 16:10:40,922: EP 27 (132) | 273m 12s, 41 samples/s | loss: 20.195, gen: 3.946, dis: 1.316, KLD: 0.136, DIV_REG: -2.347, 
+2022-09-21 16:12:58,732: EP 27 (176) | 275m 29s, 41 samples/s | loss: 19.809, gen: 3.919, dis: 1.324, KLD: 0.136, DIV_REG: -2.332, 
+2022-09-21 16:15:16,362: EP 27 (220) | 277m 47s, 41 samples/s | loss: 20.019, gen: 3.955, dis: 1.323, KLD: 0.136, DIV_REG: -2.367, 
+2022-09-21 16:15:40,756: [VAL] loss: 0.087, joint mae: 0.03180, accel diff: 0.01002, FGD: 39.328, feat_D: 130.675 / 11.8s
+2022-09-21 16:15:40,757:   *** BEST VALIDATION LOSS: 39.328
+2022-09-21 16:15:40,950: Saved the checkpoint
+2022-09-21 16:17:58,905: EP 28 ( 44) | 280m 30s, 40 samples/s | loss: 19.630, gen: 3.898, dis: 1.322, KLD: 0.137, DIV_REG: -2.351, 
+2022-09-21 16:20:17,152: EP 28 ( 88) | 282m 48s, 41 samples/s | loss: 19.363, gen: 3.927, dis: 1.326, KLD: 0.137, DIV_REG: -2.332, 
+2022-09-21 16:22:35,586: EP 28 (132) |  285m 6s, 40 samples/s | loss: 19.833, gen: 3.964, dis: 1.325, KLD: 0.138, DIV_REG: -2.373, 
+2022-09-21 16:24:53,971: EP 28 (176) | 287m 25s, 40 samples/s | loss: 19.546, gen: 3.905, dis: 1.326, KLD: 0.138, DIV_REG: -2.336, 
+2022-09-21 16:27:12,208: EP 28 (220) | 289m 43s, 40 samples/s | loss: 19.410, gen: 3.917, dis: 1.320, KLD: 0.139, DIV_REG: -2.360, 
+2022-09-21 16:27:36,722: [VAL] loss: 0.085, joint mae: 0.03112, accel diff: 0.00929, FGD: 43.902, feat_D: 128.636 / 11.9s
+2022-09-21 16:27:36,723:   best validation loss so far: 39.328 at EPOCH 28
+2022-09-21 16:29:55,134: EP 29 ( 44) | 292m 26s, 41 samples/s | loss: 18.813, gen: 3.933, dis: 1.324, KLD: 0.139, DIV_REG: -2.342, 
+2022-09-21 16:32:13,500: EP 29 ( 88) | 294m 44s, 40 samples/s | loss: 19.517, gen: 3.919, dis: 1.327, KLD: 0.140, DIV_REG: -2.372, 
+2022-09-21 16:34:32,631: EP 29 (132) |  297m 3s, 41 samples/s | loss: 19.039, gen: 3.893, dis: 1.327, KLD: 0.141, DIV_REG: -2.406, 
+2022-09-21 16:36:51,077: EP 29 (176) | 299m 22s, 40 samples/s | loss: 19.186, gen: 3.966, dis: 1.318, KLD: 0.140, DIV_REG: -2.345, 
+2022-09-21 16:39:09,414: EP 29 (220) | 301m 40s, 41 samples/s | loss: 19.607, gen: 3.950, dis: 1.317, KLD: 0.141, DIV_REG: -2.450, 
+2022-09-21 16:39:33,960: [VAL] loss: 0.088, joint mae: 0.03221, accel diff: 0.00973, FGD: 38.763, feat_D: 132.675 / 11.9s
+2022-09-21 16:39:33,961:   *** BEST VALIDATION LOSS: 38.763
+2022-09-21 16:39:34,154: Saved the checkpoint
+2022-09-21 16:39:55,143: saved sample videos, took 21.0s
+2022-09-21 16:42:12,348: EP 30 ( 44) | 304m 43s, 41 samples/s | loss: 18.690, gen: 3.934, dis: 1.327, KLD: 0.142, DIV_REG: -2.429, 
+2022-09-21 16:44:29,278: EP 30 ( 88) |  307m 0s, 41 samples/s | loss: 18.893, gen: 3.950, dis: 1.320, KLD: 0.142, DIV_REG: -2.423, 
+2022-09-21 16:46:46,595: EP 30 (132) | 309m 17s, 41 samples/s | loss: 19.147, gen: 3.924, dis: 1.322, KLD: 0.142, DIV_REG: -2.466, 
+2022-09-21 16:49:03,610: EP 30 (176) | 311m 34s, 41 samples/s | loss: 19.095, gen: 3.939, dis: 1.321, KLD: 0.143, DIV_REG: -2.449, 
+2022-09-21 16:51:20,567: EP 30 (220) | 313m 51s, 41 samples/s | loss: 19.238, gen: 3.933, dis: 1.324, KLD: 0.143, DIV_REG: -2.434, 
+2022-09-21 16:51:44,783: [VAL] loss: 0.090, joint mae: 0.03256, accel diff: 0.01002, FGD: 30.508, feat_D: 135.100 / 11.9s
+2022-09-21 16:51:44,827:   *** BEST VALIDATION LOSS: 30.508
+2022-09-21 16:51:45,070: Saved the checkpoint
+2022-09-21 16:54:02,080: EP 31 ( 44) | 316m 33s, 41 samples/s | loss: 18.938, gen: 3.979, dis: 1.323, KLD: 0.144, DIV_REG: -2.528, 
+2022-09-21 16:56:18,768: EP 31 ( 88) | 318m 49s, 41 samples/s | loss: 18.776, gen: 3.953, dis: 1.317, KLD: 0.144, DIV_REG: -2.511, 
+2022-09-21 16:58:35,802: EP 31 (132) |  321m 7s, 41 samples/s | loss: 18.958, gen: 3.924, dis: 1.324, KLD: 0.145, DIV_REG: -2.505, 
+2022-09-21 17:00:52,985: EP 31 (176) | 323m 24s, 41 samples/s | loss: 18.454, gen: 3.978, dis: 1.324, KLD: 0.145, DIV_REG: -2.433, 
+2022-09-21 17:03:10,403: EP 31 (220) | 325m 41s, 40 samples/s | loss: 19.181, gen: 3.952, dis: 1.319, KLD: 0.145, DIV_REG: -2.536, 
+2022-09-21 17:03:34,817: [VAL] loss: 0.086, joint mae: 0.03143, accel diff: 0.00933, FGD: 46.277, feat_D: 128.373 / 11.9s
+2022-09-21 17:03:34,818:   best validation loss so far: 30.508 at EPOCH 31
+2022-09-21 17:05:52,037: EP 32 ( 44) | 328m 23s, 41 samples/s | loss: 18.255, gen: 3.941, dis: 1.326, KLD: 0.145, DIV_REG: -2.548, 
+2022-09-21 17:08:09,421: EP 32 ( 88) | 330m 40s, 41 samples/s | loss: 18.570, gen: 3.976, dis: 1.318, KLD: 0.145, DIV_REG: -2.562, 
+2022-09-21 17:10:26,767: EP 32 (132) | 332m 57s, 41 samples/s | loss: 18.552, gen: 3.946, dis: 1.323, KLD: 0.146, DIV_REG: -2.523, 
+2022-09-21 17:12:44,022: EP 32 (176) | 335m 15s, 41 samples/s | loss: 18.820, gen: 3.934, dis: 1.324, KLD: 0.146, DIV_REG: -2.548, 
+2022-09-21 17:15:01,472: EP 32 (220) | 337m 32s, 40 samples/s | loss: 18.744, gen: 3.919, dis: 1.320, KLD: 0.146, DIV_REG: -2.642, 
+2022-09-21 17:15:25,976: [VAL] loss: 0.090, joint mae: 0.03252, accel diff: 0.01041, FGD: 35.153, feat_D: 132.568 / 11.8s
+2022-09-21 17:15:25,980:   best validation loss so far: 30.508 at EPOCH 31
+2022-09-21 17:17:43,326: EP 33 ( 44) | 340m 14s, 42 samples/s | loss: 18.135, gen: 3.940, dis: 1.317, KLD: 0.146, DIV_REG: -2.575, 
+2022-09-21 17:20:01,174: EP 33 ( 88) | 342m 32s, 43 samples/s | loss: 18.163, gen: 3.987, dis: 1.325, KLD: 0.147, DIV_REG: -2.556, 
+2022-09-21 17:22:18,494: EP 33 (132) | 344m 49s, 43 samples/s | loss: 18.553, gen: 3.978, dis: 1.321, KLD: 0.147, DIV_REG: -2.567, 
+2022-09-21 17:24:35,758: EP 33 (176) |  347m 6s, 42 samples/s | loss: 18.518, gen: 3.968, dis: 1.318, KLD: 0.147, DIV_REG: -2.601, 
+2022-09-21 17:26:53,483: EP 33 (220) | 349m 24s, 41 samples/s | loss: 18.461, gen: 3.941, dis: 1.314, KLD: 0.147, DIV_REG: -2.603, 
+2022-09-21 17:27:17,648: [VAL] loss: 0.089, joint mae: 0.03228, accel diff: 0.00959, FGD: 35.661, feat_D: 132.264 / 11.9s
+2022-09-21 17:27:17,649:   best validation loss so far: 30.508 at EPOCH 31
+2022-09-21 17:29:34,991: EP 34 ( 44) |  352m 6s, 41 samples/s | loss: 17.889, gen: 3.889, dis: 1.330, KLD: 0.148, DIV_REG: -2.637, 
+2022-09-21 17:31:52,480: EP 34 ( 88) | 354m 23s, 41 samples/s | loss: 18.139, gen: 3.969, dis: 1.315, KLD: 0.148, DIV_REG: -2.618, 
+2022-09-21 17:34:10,223: EP 34 (132) | 356m 41s, 41 samples/s | loss: 18.276, gen: 3.948, dis: 1.322, KLD: 0.149, DIV_REG: -2.638, 
+2022-09-21 17:36:27,594: EP 34 (176) | 358m 58s, 41 samples/s | loss: 18.382, gen: 3.947, dis: 1.320, KLD: 0.148, DIV_REG: -2.658, 
+2022-09-21 17:38:45,208: EP 34 (220) | 361m 16s, 41 samples/s | loss: 18.237, gen: 3.903, dis: 1.323, KLD: 0.150, DIV_REG: -2.644, 
+2022-09-21 17:39:09,654: [VAL] loss: 0.090, joint mae: 0.03264, accel diff: 0.00981, FGD: 23.476, feat_D: 136.065 / 11.8s
+2022-09-21 17:39:09,655:   *** BEST VALIDATION LOSS: 23.476
+2022-09-21 17:39:09,854: Saved the checkpoint
+2022-09-21 17:41:27,444: EP 35 ( 44) | 363m 58s, 41 samples/s | loss: 17.655, gen: 3.913, dis: 1.326, KLD: 0.149, DIV_REG: -2.650, 
+2022-09-21 17:43:46,702: EP 35 ( 88) | 366m 17s, 39 samples/s | loss: 18.017, gen: 3.962, dis: 1.321, KLD: 0.150, DIV_REG: -2.689, 
+2022-09-21 17:46:05,316: EP 35 (132) | 368m 36s, 41 samples/s | loss: 18.048, gen: 3.929, dis: 1.325, KLD: 0.150, DIV_REG: -2.665, 
+2022-09-21 17:48:23,733: EP 35 (176) | 370m 54s, 40 samples/s | loss: 18.257, gen: 3.897, dis: 1.325, KLD: 0.151, DIV_REG: -2.718, 
+2022-09-21 17:50:42,598: EP 35 (220) | 373m 13s, 41 samples/s | loss: 17.809, gen: 3.949, dis: 1.326, KLD: 0.151, DIV_REG: -2.662, 
+2022-09-21 17:51:07,040: [VAL] loss: 0.088, joint mae: 0.03209, accel diff: 0.00919, FGD: 37.185, feat_D: 132.106 / 11.8s
+2022-09-21 17:51:07,041:   best validation loss so far: 23.476 at EPOCH 35
+2022-09-21 17:53:24,124: EP 36 ( 44) | 375m 55s, 41 samples/s | loss: 17.380, gen: 3.893, dis: 1.327, KLD: 0.150, DIV_REG: -2.746, 
+2022-09-21 17:55:41,358: EP 36 ( 88) | 378m 12s, 41 samples/s | loss: 17.652, gen: 3.930, dis: 1.323, KLD: 0.151, DIV_REG: -2.745, 
+2022-09-21 17:57:58,128: EP 36 (132) | 380m 29s, 41 samples/s | loss: 17.791, gen: 3.911, dis: 1.321, KLD: 0.151, DIV_REG: -2.734, 
+2022-09-21 18:00:15,222: EP 36 (176) | 382m 46s, 41 samples/s | loss: 17.812, gen: 3.950, dis: 1.328, KLD: 0.151, DIV_REG: -2.733, 
+2022-09-21 18:02:32,087: EP 36 (220) |  385m 3s, 43 samples/s | loss: 18.058, gen: 3.919, dis: 1.331, KLD: 0.151, DIV_REG: -2.753, 
+2022-09-21 18:02:56,428: [VAL] loss: 0.090, joint mae: 0.03294, accel diff: 0.00935, FGD: 26.885, feat_D: 134.079 / 11.8s
+2022-09-21 18:02:56,429:   best validation loss so far: 23.476 at EPOCH 35
+2022-09-21 18:05:13,513: EP 37 ( 44) | 387m 44s, 42 samples/s | loss: 17.297, gen: 3.890, dis: 1.326, KLD: 0.151, DIV_REG: -2.761, 
+2022-09-21 18:07:30,326: EP 37 ( 88) |  390m 1s, 41 samples/s | loss: 17.621, gen: 3.923, dis: 1.323, KLD: 0.151, DIV_REG: -2.726, 
+2022-09-21 18:09:47,187: EP 37 (132) | 392m 18s, 41 samples/s | loss: 17.468, gen: 3.966, dis: 1.330, KLD: 0.152, DIV_REG: -2.811, 
+2022-09-21 18:12:04,017: EP 37 (176) | 394m 35s, 41 samples/s | loss: 17.915, gen: 3.938, dis: 1.327, KLD: 0.152, DIV_REG: -2.806, 
+2022-09-21 18:14:20,773: EP 37 (220) | 396m 51s, 41 samples/s | loss: 17.847, gen: 3.951, dis: 1.318, KLD: 0.152, DIV_REG: -2.811, 
+2022-09-21 18:14:44,892: [VAL] loss: 0.089, joint mae: 0.03225, accel diff: 0.00966, FGD: 29.373, feat_D: 132.867 / 11.8s
+2022-09-21 18:14:44,893:   best validation loss so far: 23.476 at EPOCH 35
+2022-09-21 18:17:01,680: EP 38 ( 44) | 399m 32s, 40 samples/s | loss: 17.229, gen: 3.925, dis: 1.325, KLD: 0.151, DIV_REG: -2.800, 
+2022-09-21 18:19:18,661: EP 38 ( 88) | 401m 49s, 41 samples/s | loss: 17.427, gen: 3.958, dis: 1.323, KLD: 0.152, DIV_REG: -2.810, 
+2022-09-21 18:21:35,464: EP 38 (132) |  404m 6s, 41 samples/s | loss: 17.563, gen: 3.937, dis: 1.320, KLD: 0.152, DIV_REG: -2.807, 
+2022-09-21 18:23:52,207: EP 38 (176) | 406m 23s, 41 samples/s | loss: 17.483, gen: 3.952, dis: 1.325, KLD: 0.151, DIV_REG: -2.832, 
+2022-09-21 18:26:09,325: EP 38 (220) | 408m 40s, 41 samples/s | loss: 17.804, gen: 3.936, dis: 1.329, KLD: 0.153, DIV_REG: -2.809, 
+2022-09-21 18:26:33,715: [VAL] loss: 0.091, joint mae: 0.03293, accel diff: 0.00973, FGD: 25.388, feat_D: 135.130 / 11.8s
+2022-09-21 18:26:33,716:   best validation loss so far: 23.476 at EPOCH 35
+2022-09-21 18:28:50,579: EP 39 ( 44) | 411m 21s, 41 samples/s | loss: 17.145, gen: 3.921, dis: 1.324, KLD: 0.152, DIV_REG: -2.836, 
+2022-09-21 18:31:07,218: EP 39 ( 88) | 413m 38s, 41 samples/s | loss: 17.181, gen: 3.896, dis: 1.319, KLD: 0.153, DIV_REG: -2.849, 
+2022-09-21 18:33:24,226: EP 39 (132) | 415m 55s, 41 samples/s | loss: 17.324, gen: 3.914, dis: 1.326, KLD: 0.153, DIV_REG: -2.844, 
+2022-09-21 18:35:41,315: EP 39 (176) | 418m 12s, 41 samples/s | loss: 17.480, gen: 3.892, dis: 1.330, KLD: 0.153, DIV_REG: -2.867, 
+2022-09-21 18:37:58,356: EP 39 (220) | 420m 29s, 41 samples/s | loss: 17.315, gen: 3.943, dis: 1.319, KLD: 0.153, DIV_REG: -2.874, 
+2022-09-21 18:38:22,788: [VAL] loss: 0.088, joint mae: 0.03213, accel diff: 0.00975, FGD: 29.966, feat_D: 132.790 / 11.8s
+2022-09-21 18:38:22,789:   best validation loss so far: 23.476 at EPOCH 35
+2022-09-21 18:38:22,972: Saved the checkpoint
+2022-09-21 18:38:43,726: saved sample videos, took 20.8s
+2022-09-21 18:41:00,438: EP 40 ( 44) | 423m 31s, 43 samples/s | loss: 16.723, gen: 3.892, dis: 1.329, KLD: 0.153, DIV_REG: -2.849, 
+2022-09-21 18:43:17,950: EP 40 ( 88) | 425m 49s, 42 samples/s | loss: 16.905, gen: 3.958, dis: 1.320, KLD: 0.153, DIV_REG: -2.885, 
+2022-09-21 18:45:34,829: EP 40 (132) |  428m 6s, 41 samples/s | loss: 16.975, gen: 3.892, dis: 1.327, KLD: 0.153, DIV_REG: -2.870, 
+2022-09-21 18:47:51,660: EP 40 (176) | 430m 22s, 41 samples/s | loss: 17.287, gen: 3.995, dis: 1.314, KLD: 0.154, DIV_REG: -2.926, 
+2022-09-21 18:50:08,877: EP 40 (220) | 432m 40s, 41 samples/s | loss: 17.428, gen: 3.981, dis: 1.325, KLD: 0.154, DIV_REG: -2.916, 
+2022-09-21 18:50:32,970: [VAL] loss: 0.088, joint mae: 0.03221, accel diff: 0.00966, FGD: 31.893, feat_D: 132.080 / 11.8s
+2022-09-21 18:50:32,973:   best validation loss so far: 23.476 at EPOCH 35
+2022-09-21 18:52:50,374: EP 41 ( 44) | 435m 21s, 41 samples/s | loss: 16.658, gen: 3.918, dis: 1.333, KLD: 0.154, DIV_REG: -2.925, 
+2022-09-21 18:55:07,629: EP 41 ( 88) | 437m 38s, 41 samples/s | loss: 16.810, gen: 3.935, dis: 1.323, KLD: 0.154, DIV_REG: -2.866, 
+2022-09-21 18:57:25,095: EP 41 (132) | 439m 56s, 41 samples/s | loss: 17.138, gen: 3.952, dis: 1.326, KLD: 0.154, DIV_REG: -2.962, 
+2022-09-21 18:59:42,330: EP 41 (176) | 442m 13s, 41 samples/s | loss: 17.121, gen: 3.937, dis: 1.317, KLD: 0.155, DIV_REG: -2.983, 
+2022-09-21 19:01:59,672: EP 41 (220) | 444m 30s, 41 samples/s | loss: 17.092, gen: 3.916, dis: 1.337, KLD: 0.155, DIV_REG: -2.974, 
+2022-09-21 19:02:23,999: [VAL] loss: 0.089, joint mae: 0.03249, accel diff: 0.00953, FGD: 26.701, feat_D: 134.875 / 11.8s
+2022-09-21 19:02:24,003:   best validation loss so far: 23.476 at EPOCH 35
+2022-09-21 19:04:41,117: EP 42 ( 44) | 447m 12s, 41 samples/s | loss: 16.660, gen: 3.921, dis: 1.328, KLD: 0.155, DIV_REG: -2.971, 
+2022-09-21 19:06:58,369: EP 42 ( 88) | 449m 29s, 41 samples/s | loss: 16.709, gen: 3.932, dis: 1.323, KLD: 0.156, DIV_REG: -3.009, 
+2022-09-21 19:09:15,705: EP 42 (132) | 451m 46s, 40 samples/s | loss: 16.745, gen: 3.917, dis: 1.329, KLD: 0.155, DIV_REG: -2.997, 
+2022-09-21 19:11:32,694: EP 42 (176) |  454m 3s, 41 samples/s | loss: 16.597, gen: 3.916, dis: 1.322, KLD: 0.156, DIV_REG: -2.962, 
+2022-09-21 19:13:49,880: EP 42 (220) | 456m 21s, 41 samples/s | loss: 16.959, gen: 3.893, dis: 1.333, KLD: 0.156, DIV_REG: -3.010, 
+2022-09-21 19:14:14,414: [VAL] loss: 0.090, joint mae: 0.03292, accel diff: 0.00982, FGD: 25.637, feat_D: 137.221 / 11.9s
+2022-09-21 19:14:14,415:   best validation loss so far: 23.476 at EPOCH 35
+2022-09-21 19:16:31,889: EP 43 ( 44) |  459m 3s, 41 samples/s | loss: 16.490, gen: 3.937, dis: 1.322, KLD: 0.156, DIV_REG: -3.024, 
+2022-09-21 19:18:49,075: EP 43 ( 88) | 461m 20s, 41 samples/s | loss: 16.537, gen: 3.889, dis: 1.330, KLD: 0.157, DIV_REG: -2.978, 
+2022-09-21 19:21:05,848: EP 43 (132) | 463m 37s, 40 samples/s | loss: 16.392, gen: 3.867, dis: 1.333, KLD: 0.157, DIV_REG: -3.006, 
+2022-09-21 19:23:23,019: EP 43 (176) | 465m 54s, 40 samples/s | loss: 16.630, gen: 3.933, dis: 1.326, KLD: 0.158, DIV_REG: -3.041, 
+2022-09-21 19:25:40,142: EP 43 (220) | 468m 11s, 41 samples/s | loss: 16.969, gen: 3.985, dis: 1.325, KLD: 0.158, DIV_REG: -3.033, 
+2022-09-21 19:26:04,491: [VAL] loss: 0.090, joint mae: 0.03280, accel diff: 0.00961, FGD: 28.722, feat_D: 135.478 / 11.8s
+2022-09-21 19:26:04,492:   best validation loss so far: 23.476 at EPOCH 35
+2022-09-21 19:28:21,566: EP 44 ( 44) | 470m 52s, 43 samples/s | loss: 16.152, gen: 3.899, dis: 1.328, KLD: 0.158, DIV_REG: -2.992, 
+2022-09-21 19:30:38,536: EP 44 ( 88) |  473m 9s, 43 samples/s | loss: 16.329, gen: 3.895, dis: 1.324, KLD: 0.158, DIV_REG: -3.057, 
+2022-09-21 19:32:55,878: EP 44 (132) | 475m 27s, 41 samples/s | loss: 16.640, gen: 3.961, dis: 1.327, KLD: 0.158, DIV_REG: -3.064, 
+2022-09-21 19:35:13,157: EP 44 (176) | 477m 44s, 42 samples/s | loss: 16.586, gen: 3.903, dis: 1.333, KLD: 0.158, DIV_REG: -3.044, 
+2022-09-21 19:37:30,294: EP 44 (220) |  480m 1s, 41 samples/s | loss: 16.578, gen: 3.914, dis: 1.321, KLD: 0.159, DIV_REG: -3.109, 
+2022-09-21 19:37:54,394: [VAL] loss: 0.089, joint mae: 0.03249, accel diff: 0.00997, FGD: 29.672, feat_D: 133.791 / 11.8s
+2022-09-21 19:37:54,395:   best validation loss so far: 23.476 at EPOCH 35
+2022-09-21 19:40:11,660: EP 45 ( 44) | 482m 42s, 41 samples/s | loss: 16.315, gen: 3.920, dis: 1.327, KLD: 0.159, DIV_REG: -3.077, 
+2022-09-21 19:42:28,789: EP 45 ( 88) | 484m 59s, 41 samples/s | loss: 16.348, gen: 3.901, dis: 1.324, KLD: 0.159, DIV_REG: -3.124, 
+2022-09-21 19:44:45,819: EP 45 (132) | 487m 17s, 41 samples/s | loss: 16.180, gen: 3.912, dis: 1.328, KLD: 0.159, DIV_REG: -3.074, 
+2022-09-21 19:47:03,086: EP 45 (176) | 489m 34s, 41 samples/s | loss: 16.378, gen: 3.937, dis: 1.330, KLD: 0.159, DIV_REG: -3.066, 
+2022-09-21 19:49:20,516: EP 45 (220) | 491m 51s, 41 samples/s | loss: 16.488, gen: 3.923, dis: 1.327, KLD: 0.159, DIV_REG: -3.118, 
+2022-09-21 19:49:44,841: [VAL] loss: 0.091, joint mae: 0.03300, accel diff: 0.00976, FGD: 24.624, feat_D: 136.486 / 11.8s
+2022-09-21 19:49:44,845:   best validation loss so far: 23.476 at EPOCH 35
+2022-09-21 19:52:02,214: EP 46 ( 44) | 494m 33s, 40 samples/s | loss: 16.038, gen: 3.885, dis: 1.333, KLD: 0.160, DIV_REG: -3.108, 
+2022-09-21 19:54:19,473: EP 46 ( 88) | 496m 50s, 40 samples/s | loss: 15.963, gen: 3.894, dis: 1.323, KLD: 0.160, DIV_REG: -3.127, 
+2022-09-21 19:56:37,270: EP 46 (132) |  499m 8s, 41 samples/s | loss: 15.975, gen: 3.917, dis: 1.324, KLD: 0.159, DIV_REG: -3.109, 
+2022-09-21 19:58:54,514: EP 46 (176) | 501m 25s, 41 samples/s | loss: 16.222, gen: 3.979, dis: 1.323, KLD: 0.159, DIV_REG: -3.121, 
+2022-09-21 20:01:11,929: EP 46 (220) | 503m 43s, 41 samples/s | loss: 16.506, gen: 3.927, dis: 1.327, KLD: 0.159, DIV_REG: -3.151, 
+2022-09-21 20:01:36,293: [VAL] loss: 0.090, joint mae: 0.03280, accel diff: 0.00997, FGD: 25.395, feat_D: 135.001 / 11.8s
+2022-09-21 20:01:36,294:   best validation loss so far: 23.476 at EPOCH 35
+2022-09-21 20:03:53,727: EP 47 ( 44) | 506m 24s, 41 samples/s | loss: 15.926, gen: 3.885, dis: 1.329, KLD: 0.160, DIV_REG: -3.157, 
+2022-09-21 20:06:11,117: EP 47 ( 88) | 508m 42s, 41 samples/s | loss: 15.726, gen: 3.922, dis: 1.322, KLD: 0.160, DIV_REG: -3.106, 
+2022-09-21 20:08:28,439: EP 47 (132) | 510m 59s, 41 samples/s | loss: 16.009, gen: 3.927, dis: 1.323, KLD: 0.160, DIV_REG: -3.190, 
+2022-09-21 20:10:45,645: EP 47 (176) | 513m 16s, 41 samples/s | loss: 15.935, gen: 3.911, dis: 1.330, KLD: 0.160, DIV_REG: -3.125, 
+2022-09-21 20:13:02,482: EP 47 (220) | 515m 33s, 42 samples/s | loss: 16.340, gen: 3.949, dis: 1.326, KLD: 0.160, DIV_REG: -3.164, 
+2022-09-21 20:13:26,849: [VAL] loss: 0.089, joint mae: 0.03251, accel diff: 0.00958, FGD: 26.739, feat_D: 132.891 / 11.8s
+2022-09-21 20:13:26,850:   best validation loss so far: 23.476 at EPOCH 35
+2022-09-21 20:15:43,855: EP 48 ( 44) | 518m 15s, 43 samples/s | loss: 15.849, gen: 3.885, dis: 1.331, KLD: 0.161, DIV_REG: -3.213, 
+2022-09-21 20:18:01,178: EP 48 ( 88) | 520m 32s, 41 samples/s | loss: 15.740, gen: 3.917, dis: 1.324, KLD: 0.161, DIV_REG: -3.149, 
+2022-09-21 20:20:18,434: EP 48 (132) | 522m 49s, 41 samples/s | loss: 16.016, gen: 3.911, dis: 1.327, KLD: 0.160, DIV_REG: -3.230, 
+2022-09-21 20:22:35,527: EP 48 (176) |  525m 6s, 41 samples/s | loss: 15.849, gen: 3.899, dis: 1.325, KLD: 0.160, DIV_REG: -3.139, 
+2022-09-21 20:24:52,544: EP 48 (220) | 527m 23s, 41 samples/s | loss: 16.134, gen: 3.968, dis: 1.315, KLD: 0.161, DIV_REG: -3.157, 
+2022-09-21 20:25:16,534: [VAL] loss: 0.092, joint mae: 0.03345, accel diff: 0.01036, FGD: 23.501, feat_D: 138.243 / 11.8s
+2022-09-21 20:25:16,537:   best validation loss so far: 23.476 at EPOCH 35
+2022-09-21 20:27:33,509: EP 49 ( 44) |  530m 4s, 41 samples/s | loss: 15.586, gen: 3.947, dis: 1.322, KLD: 0.161, DIV_REG: -3.194, 
+2022-09-21 20:29:50,654: EP 49 ( 88) | 532m 21s, 41 samples/s | loss: 15.901, gen: 3.931, dis: 1.327, KLD: 0.162, DIV_REG: -3.212, 
+2022-09-21 20:32:07,456: EP 49 (132) | 534m 38s, 41 samples/s | loss: 15.604, gen: 3.935, dis: 1.324, KLD: 0.161, DIV_REG: -3.194, 
+2022-09-21 20:34:24,670: EP 49 (176) | 536m 55s, 41 samples/s | loss: 16.036, gen: 3.927, dis: 1.327, KLD: 0.162, DIV_REG: -3.191, 
+2022-09-21 20:36:41,528: EP 49 (220) | 539m 12s, 41 samples/s | loss: 15.995, gen: 3.937, dis: 1.327, KLD: 0.162, DIV_REG: -3.251, 
+2022-09-21 20:37:05,841: [VAL] loss: 0.091, joint mae: 0.03311, accel diff: 0.00979, FGD: 26.234, feat_D: 136.408 / 11.8s
+2022-09-21 20:37:05,841:   best validation loss so far: 23.476 at EPOCH 35
+2022-09-21 20:37:26,593: saved sample videos, took 20.8s
+2022-09-21 20:39:43,386: EP 50 ( 44) | 542m 14s, 41 samples/s | loss: 15.500, gen: 3.970, dis: 1.321, KLD: 0.161, DIV_REG: -3.209, 
+2022-09-21 20:42:00,272: EP 50 ( 88) | 544m 31s, 41 samples/s | loss: 15.673, gen: 3.963, dis: 1.327, KLD: 0.162, DIV_REG: -3.251, 
+2022-09-21 20:44:17,136: EP 50 (132) | 546m 48s, 41 samples/s | loss: 16.057, gen: 4.004, dis: 1.324, KLD: 0.161, DIV_REG: -3.214, 
+2022-09-21 20:46:33,994: EP 50 (176) |  549m 5s, 41 samples/s | loss: 15.539, gen: 3.977, dis: 1.326, KLD: 0.161, DIV_REG: -3.221, 
+2022-09-21 20:48:50,846: EP 50 (220) | 551m 22s, 41 samples/s | loss: 15.955, gen: 3.920, dis: 1.327, KLD: 0.161, DIV_REG: -3.304, 
+2022-09-21 20:49:15,290: [VAL] loss: 0.092, joint mae: 0.03367, accel diff: 0.01012, FGD: 23.028, feat_D: 138.148 / 11.8s
+2022-09-21 20:49:15,291:   *** BEST VALIDATION LOSS: 23.028
+2022-09-21 20:49:15,475: Saved the checkpoint
+2022-09-21 20:51:32,529: EP 51 ( 44) |  554m 3s, 41 samples/s | loss: 15.434, gen: 3.906, dis: 1.327, KLD: 0.161, DIV_REG: -3.261, 
+2022-09-21 20:53:49,433: EP 51 ( 88) | 556m 20s, 41 samples/s | loss: 15.340, gen: 3.934, dis: 1.322, KLD: 0.161, DIV_REG: -3.232, 
+2022-09-21 20:56:06,456: EP 51 (132) | 558m 37s, 42 samples/s | loss: 15.628, gen: 3.916, dis: 1.322, KLD: 0.162, DIV_REG: -3.285, 
+2022-09-21 20:58:23,229: EP 51 (176) | 560m 54s, 43 samples/s | loss: 15.791, gen: 3.976, dis: 1.311, KLD: 0.162, DIV_REG: -3.260, 
+2022-09-21 21:00:40,524: EP 51 (220) | 563m 11s, 43 samples/s | loss: 15.630, gen: 3.961, dis: 1.329, KLD: 0.162, DIV_REG: -3.265, 
+2022-09-21 21:01:04,790: [VAL] loss: 0.092, joint mae: 0.03340, accel diff: 0.00977, FGD: 21.000, feat_D: 137.941 / 11.8s
+2022-09-21 21:01:04,791:   *** BEST VALIDATION LOSS: 21.000
+2022-09-21 21:01:04,979: Saved the checkpoint
+2022-09-21 21:03:22,323: EP 52 ( 44) | 565m 53s, 42 samples/s | loss: 15.171, gen: 3.946, dis: 1.328, KLD: 0.162, DIV_REG: -3.315, 
+2022-09-21 21:05:39,516: EP 52 ( 88) | 568m 10s, 41 samples/s | loss: 15.378, gen: 3.931, dis: 1.325, KLD: 0.162, DIV_REG: -3.277, 
+2022-09-21 21:07:56,855: EP 52 (132) | 570m 28s, 41 samples/s | loss: 15.492, gen: 3.993, dis: 1.309, KLD: 0.163, DIV_REG: -3.307, 
+2022-09-21 21:10:14,174: EP 52 (176) | 572m 45s, 41 samples/s | loss: 15.538, gen: 3.973, dis: 1.321, KLD: 0.163, DIV_REG: -3.313, 
+2022-09-21 21:12:31,368: EP 52 (220) |  575m 2s, 41 samples/s | loss: 15.800, gen: 3.981, dis: 1.315, KLD: 0.162, DIV_REG: -3.308, 
+2022-09-21 21:12:55,411: [VAL] loss: 0.091, joint mae: 0.03329, accel diff: 0.00988, FGD: 22.766, feat_D: 137.705 / 11.8s
+2022-09-21 21:12:55,412:   best validation loss so far: 21.000 at EPOCH 52
+2022-09-21 21:15:12,605: EP 53 ( 44) | 577m 43s, 41 samples/s | loss: 15.277, gen: 3.956, dis: 1.323, KLD: 0.163, DIV_REG: -3.345, 
+2022-09-21 21:17:30,251: EP 53 ( 88) |  580m 1s, 41 samples/s | loss: 15.463, gen: 3.980, dis: 1.320, KLD: 0.163, DIV_REG: -3.391, 
+2022-09-21 21:19:47,466: EP 53 (132) | 582m 18s, 41 samples/s | loss: 15.315, gen: 3.970, dis: 1.322, KLD: 0.163, DIV_REG: -3.363, 
+2022-09-21 21:22:04,647: EP 53 (176) | 584m 35s, 41 samples/s | loss: 15.558, gen: 3.946, dis: 1.321, KLD: 0.163, DIV_REG: -3.338, 
+2022-09-21 21:24:24,995: EP 53 (220) | 586m 56s, 39 samples/s | loss: 15.460, gen: 4.019, dis: 1.316, KLD: 0.163, DIV_REG: -3.310, 
+2022-09-21 21:24:50,365: [VAL] loss: 0.092, joint mae: 0.03335, accel diff: 0.00970, FGD: 21.194, feat_D: 137.626 / 11.9s
+2022-09-21 21:24:50,366:   best validation loss so far: 21.000 at EPOCH 52
+2022-09-21 21:27:11,068: EP 54 ( 44) | 589m 42s, 41 samples/s | loss: 15.214, gen: 3.946, dis: 1.330, KLD: 0.163, DIV_REG: -3.411, 
+2022-09-21 21:29:28,020: EP 54 ( 88) | 591m 59s, 41 samples/s | loss: 15.320, gen: 3.955, dis: 1.322, KLD: 0.164, DIV_REG: -3.373, 
+2022-09-21 21:31:45,092: EP 54 (132) | 594m 16s, 41 samples/s | loss: 15.174, gen: 3.969, dis: 1.317, KLD: 0.164, DIV_REG: -3.318, 
+2022-09-21 21:34:02,407: EP 54 (176) | 596m 33s, 41 samples/s | loss: 15.342, gen: 3.993, dis: 1.315, KLD: 0.164, DIV_REG: -3.371, 
+2022-09-21 21:36:19,905: EP 54 (220) | 598m 51s, 41 samples/s | loss: 15.342, gen: 3.983, dis: 1.323, KLD: 0.164, DIV_REG: -3.336, 
+2022-09-21 21:36:44,294: [VAL] loss: 0.091, joint mae: 0.03322, accel diff: 0.00963, FGD: 24.560, feat_D: 136.479 / 11.8s
+2022-09-21 21:36:44,297:   best validation loss so far: 21.000 at EPOCH 52
+2022-09-21 21:39:01,953: EP 55 ( 44) | 601m 33s, 41 samples/s | loss: 14.928, gen: 3.940, dis: 1.321, KLD: 0.165, DIV_REG: -3.404, 
+2022-09-21 21:41:19,343: EP 55 ( 88) | 603m 50s, 41 samples/s | loss: 15.070, gen: 3.967, dis: 1.329, KLD: 0.165, DIV_REG: -3.403, 
+2022-09-21 21:43:36,453: EP 55 (132) |  606m 7s, 40 samples/s | loss: 15.045, gen: 3.958, dis: 1.317, KLD: 0.165, DIV_REG: -3.331, 
+2022-09-21 21:45:54,141: EP 55 (176) | 608m 25s, 41 samples/s | loss: 15.129, gen: 3.977, dis: 1.320, KLD: 0.165, DIV_REG: -3.383, 
+2022-09-21 21:48:11,581: EP 55 (220) | 610m 42s, 42 samples/s | loss: 15.446, gen: 4.012, dis: 1.323, KLD: 0.165, DIV_REG: -3.464, 
+2022-09-21 21:48:36,051: [VAL] loss: 0.091, joint mae: 0.03334, accel diff: 0.00964, FGD: 22.416, feat_D: 137.391 / 11.8s
+2022-09-21 21:48:36,054:   best validation loss so far: 21.000 at EPOCH 52
+2022-09-21 21:50:53,781: EP 56 ( 44) | 613m 24s, 41 samples/s | loss: 15.065, gen: 3.941, dis: 1.318, KLD: 0.165, DIV_REG: -3.442, 
+2022-09-21 21:53:11,496: EP 56 ( 88) | 615m 42s, 42 samples/s | loss: 15.057, gen: 4.039, dis: 1.318, KLD: 0.164, DIV_REG: -3.423, 
+2022-09-21 21:55:29,385: EP 56 (132) |  618m 0s, 41 samples/s | loss: 15.177, gen: 3.972, dis: 1.322, KLD: 0.164, DIV_REG: -3.444, 
+2022-09-21 21:57:46,930: EP 56 (176) | 620m 18s, 40 samples/s | loss: 14.944, gen: 3.967, dis: 1.319, KLD: 0.164, DIV_REG: -3.351, 
+2022-09-21 22:00:04,426: EP 56 (220) | 622m 35s, 41 samples/s | loss: 14.924, gen: 3.968, dis: 1.316, KLD: 0.165, DIV_REG: -3.314, 
+2022-09-21 22:00:28,587: [VAL] loss: 0.091, joint mae: 0.03315, accel diff: 0.00967, FGD: 25.029, feat_D: 136.613 / 11.8s
+2022-09-21 22:00:28,588:   best validation loss so far: 21.000 at EPOCH 52
+2022-09-21 22:02:46,139: EP 57 ( 44) | 625m 17s, 40 samples/s | loss: 14.692, gen: 3.958, dis: 1.327, KLD: 0.166, DIV_REG: -3.396, 
+2022-09-21 22:05:03,820: EP 57 ( 88) | 627m 35s, 41 samples/s | loss: 15.010, gen: 4.035, dis: 1.315, KLD: 0.166, DIV_REG: -3.454, 
+2022-09-21 22:07:21,457: EP 57 (132) | 629m 52s, 40 samples/s | loss: 14.990, gen: 4.003, dis: 1.317, KLD: 0.166, DIV_REG: -3.430, 
+2022-09-21 22:09:39,153: EP 57 (176) | 632m 10s, 41 samples/s | loss: 15.098, gen: 3.982, dis: 1.317, KLD: 0.166, DIV_REG: -3.404, 
+2022-09-21 22:11:56,533: EP 57 (220) | 634m 27s, 41 samples/s | loss: 15.135, gen: 4.025, dis: 1.313, KLD: 0.166, DIV_REG: -3.441, 
+2022-09-21 22:12:20,944: [VAL] loss: 0.092, joint mae: 0.03329, accel diff: 0.00982, FGD: 17.472, feat_D: 136.986 / 11.8s
+2022-09-21 22:12:20,945:   *** BEST VALIDATION LOSS: 17.472
+2022-09-21 22:12:21,129: Saved the checkpoint
+2022-09-21 22:14:38,834: EP 58 ( 44) | 637m 10s, 41 samples/s | loss: 14.599, gen: 3.979, dis: 1.320, KLD: 0.167, DIV_REG: -3.384, 
+2022-09-21 22:16:56,546: EP 58 ( 88) | 639m 27s, 40 samples/s | loss: 14.622, gen: 3.996, dis: 1.320, KLD: 0.167, DIV_REG: -3.431, 
+2022-09-21 22:19:14,300: EP 58 (132) | 641m 45s, 41 samples/s | loss: 14.774, gen: 4.019, dis: 1.315, KLD: 0.167, DIV_REG: -3.431, 
+2022-09-21 22:21:31,796: EP 58 (176) |  644m 2s, 41 samples/s | loss: 15.063, gen: 3.987, dis: 1.319, KLD: 0.167, DIV_REG: -3.411, 
+2022-09-21 22:23:49,491: EP 58 (220) | 646m 20s, 41 samples/s | loss: 15.257, gen: 4.025, dis: 1.307, KLD: 0.167, DIV_REG: -3.460, 
+2022-09-21 22:24:13,998: [VAL] loss: 0.092, joint mae: 0.03362, accel diff: 0.01008, FGD: 19.796, feat_D: 137.754 / 11.9s
+2022-09-21 22:24:13,999:   best validation loss so far: 17.472 at EPOCH 58
+2022-09-21 22:26:31,823: EP 59 ( 44) |  649m 3s, 40 samples/s | loss: 14.884, gen: 4.077, dis: 1.308, KLD: 0.167, DIV_REG: -3.501, 
+2022-09-21 22:28:49,434: EP 59 ( 88) | 651m 20s, 41 samples/s | loss: 14.739, gen: 3.979, dis: 1.318, KLD: 0.168, DIV_REG: -3.462, 
+2022-09-21 22:31:07,149: EP 59 (132) | 653m 38s, 40 samples/s | loss: 14.818, gen: 4.051, dis: 1.307, KLD: 0.168, DIV_REG: -3.532, 
+2022-09-21 22:33:25,018: EP 59 (176) | 655m 56s, 41 samples/s | loss: 14.998, gen: 4.029, dis: 1.313, KLD: 0.168, DIV_REG: -3.457, 
+2022-09-21 22:35:42,919: EP 59 (220) | 658m 14s, 41 samples/s | loss: 14.894, gen: 4.012, dis: 1.312, KLD: 0.167, DIV_REG: -3.523, 
+2022-09-21 22:36:07,313: [VAL] loss: 0.090, joint mae: 0.03267, accel diff: 0.00974, FGD: 26.878, feat_D: 133.603 / 11.7s
+2022-09-21 22:36:07,314:   best validation loss so far: 17.472 at EPOCH 58
+2022-09-21 22:36:07,507: Saved the checkpoint
+2022-09-21 22:36:28,270: saved sample videos, took 20.8s
+2022-09-21 22:38:46,255: EP 60 ( 44) | 661m 17s, 41 samples/s | loss: 14.566, gen: 4.005, dis: 1.322, KLD: 0.167, DIV_REG: -3.450, 
+2022-09-21 22:41:04,082: EP 60 ( 88) | 663m 35s, 41 samples/s | loss: 14.783, gen: 4.007, dis: 1.308, KLD: 0.168, DIV_REG: -3.533, 
+2022-09-21 22:43:22,039: EP 60 (132) | 665m 53s, 41 samples/s | loss: 14.547, gen: 4.018, dis: 1.319, KLD: 0.168, DIV_REG: -3.545, 
+2022-09-21 22:45:39,480: EP 60 (176) | 668m 10s, 41 samples/s | loss: 14.946, gen: 4.042, dis: 1.301, KLD: 0.169, DIV_REG: -3.536, 
+2022-09-21 22:47:56,783: EP 60 (220) | 670m 27s, 41 samples/s | loss: 14.968, gen: 4.030, dis: 1.314, KLD: 0.168, DIV_REG: -3.460, 
+2022-09-21 22:48:20,883: [VAL] loss: 0.092, joint mae: 0.03335, accel diff: 0.01028, FGD: 23.625, feat_D: 137.144 / 11.9s
+2022-09-21 22:48:20,884:   best validation loss so far: 17.472 at EPOCH 58
+2022-09-21 22:50:38,244: EP 61 ( 44) |  673m 9s, 41 samples/s | loss: 14.481, gen: 4.037, dis: 1.318, KLD: 0.169, DIV_REG: -3.520, 
+2022-09-21 22:52:55,973: EP 61 ( 88) | 675m 27s, 41 samples/s | loss: 14.583, gen: 3.977, dis: 1.313, KLD: 0.169, DIV_REG: -3.499, 
+2022-09-21 22:55:11,551: EP 61 (132) | 677m 42s, 41 samples/s | loss: 14.605, gen: 4.010, dis: 1.326, KLD: 0.170, DIV_REG: -3.559, 
+2022-09-21 22:57:26,947: EP 61 (176) | 679m 58s, 42 samples/s | loss: 14.978, gen: 4.049, dis: 1.301, KLD: 0.169, DIV_REG: -3.541, 
+2022-09-21 22:59:42,389: EP 61 (220) | 682m 13s, 41 samples/s | loss: 14.726, gen: 4.027, dis: 1.312, KLD: 0.169, DIV_REG: -3.530, 
+2022-09-21 23:00:06,474: [VAL] loss: 0.095, joint mae: 0.03440, accel diff: 0.01022, FGD: 18.517, feat_D: 141.717 / 11.7s
+2022-09-21 23:00:06,475:   best validation loss so far: 17.472 at EPOCH 58
+2022-09-21 23:02:22,054: EP 62 ( 44) | 684m 53s, 41 samples/s | loss: 14.406, gen: 4.046, dis: 1.316, KLD: 0.169, DIV_REG: -3.497, 
+2022-09-21 23:04:38,756: EP 62 ( 88) |  687m 9s, 40 samples/s | loss: 14.642, gen: 4.055, dis: 1.316, KLD: 0.169, DIV_REG: -3.544, 
+2022-09-21 23:06:56,107: EP 62 (132) | 689m 27s, 41 samples/s | loss: 14.576, gen: 4.049, dis: 1.307, KLD: 0.169, DIV_REG: -3.596, 
+2022-09-21 23:09:13,739: EP 62 (176) | 691m 44s, 40 samples/s | loss: 14.994, gen: 4.154, dis: 1.305, KLD: 0.169, DIV_REG: -3.579, 
+2022-09-21 23:11:31,448: EP 62 (220) |  694m 2s, 41 samples/s | loss: 14.859, gen: 4.066, dis: 1.310, KLD: 0.169, DIV_REG: -3.589, 
+2022-09-21 23:11:55,892: [VAL] loss: 0.093, joint mae: 0.03379, accel diff: 0.00964, FGD: 17.489, feat_D: 137.724 / 11.8s
+2022-09-21 23:11:55,896:   best validation loss so far: 17.472 at EPOCH 58
+2022-09-21 23:14:13,629: EP 63 ( 44) | 696m 44s, 40 samples/s | loss: 14.291, gen: 4.136, dis: 1.299, KLD: 0.170, DIV_REG: -3.544, 
+2022-09-21 23:16:31,841: EP 63 ( 88) |  699m 3s, 40 samples/s | loss: 14.688, gen: 4.050, dis: 1.315, KLD: 0.170, DIV_REG: -3.579, 
+2022-09-21 23:18:49,828: EP 63 (132) | 701m 21s, 41 samples/s | loss: 14.568, gen: 4.102, dis: 1.315, KLD: 0.171, DIV_REG: -3.602, 
+2022-09-21 23:21:07,964: EP 63 (176) | 703m 39s, 41 samples/s | loss: 14.763, gen: 4.029, dis: 1.303, KLD: 0.171, DIV_REG: -3.562, 
+2022-09-21 23:23:25,463: EP 63 (220) | 705m 56s, 42 samples/s | loss: 14.738, gen: 4.082, dis: 1.312, KLD: 0.171, DIV_REG: -3.654, 
+2022-09-21 23:23:49,965: [VAL] loss: 0.091, joint mae: 0.03329, accel diff: 0.00998, FGD: 26.886, feat_D: 135.013 / 11.9s
+2022-09-21 23:23:49,969:   best validation loss so far: 17.472 at EPOCH 58
+2022-09-21 23:26:07,806: EP 64 ( 44) | 708m 39s, 42 samples/s | loss: 14.548, gen: 4.105, dis: 1.301, KLD: 0.171, DIV_REG: -3.619, 
+2022-09-21 23:28:25,641: EP 64 ( 88) | 710m 56s, 42 samples/s | loss: 14.565, gen: 4.117, dis: 1.306, KLD: 0.171, DIV_REG: -3.624, 
+2022-09-21 23:30:43,459: EP 64 (132) | 713m 14s, 41 samples/s | loss: 14.653, gen: 4.045, dis: 1.320, KLD: 0.171, DIV_REG: -3.638, 
+2022-09-21 23:33:01,066: EP 64 (176) | 715m 32s, 41 samples/s | loss: 14.558, gen: 4.049, dis: 1.308, KLD: 0.171, DIV_REG: -3.636, 
+2022-09-21 23:35:18,966: EP 64 (220) | 717m 50s, 41 samples/s | loss: 14.520, gen: 4.096, dis: 1.311, KLD: 0.171, DIV_REG: -3.654, 
+2022-09-21 23:35:43,065: [VAL] loss: 0.092, joint mae: 0.03356, accel diff: 0.01013, FGD: 18.094, feat_D: 138.122 / 11.8s
+2022-09-21 23:35:43,066:   best validation loss so far: 17.472 at EPOCH 58
+2022-09-21 23:38:00,909: EP 65 ( 44) | 720m 32s, 41 samples/s | loss: 14.174, gen: 4.027, dis: 1.314, KLD: 0.172, DIV_REG: -3.693, 
+2022-09-21 23:40:18,545: EP 65 ( 88) | 722m 49s, 41 samples/s | loss: 14.355, gen: 4.072, dis: 1.300, KLD: 0.171, DIV_REG: -3.634, 
+2022-09-21 23:42:36,183: EP 65 (132) |  725m 7s, 41 samples/s | loss: 14.446, gen: 4.072, dis: 1.306, KLD: 0.172, DIV_REG: -3.660, 
+2022-09-21 23:44:53,651: EP 65 (176) | 727m 24s, 41 samples/s | loss: 14.698, gen: 4.086, dis: 1.308, KLD: 0.171, DIV_REG: -3.661, 
+2022-09-21 23:47:11,178: EP 65 (220) | 729m 42s, 41 samples/s | loss: 14.749, gen: 4.090, dis: 1.321, KLD: 0.171, DIV_REG: -3.632, 
+2022-09-21 23:47:35,575: [VAL] loss: 0.092, joint mae: 0.03349, accel diff: 0.00969, FGD: 24.272, feat_D: 137.212 / 11.8s
+2022-09-21 23:47:35,576:   best validation loss so far: 17.472 at EPOCH 58
+2022-09-21 23:49:53,315: EP 66 ( 44) | 732m 24s, 40 samples/s | loss: 14.377, gen: 4.021, dis: 1.304, KLD: 0.171, DIV_REG: -3.703, 
+2022-09-21 23:52:11,049: EP 66 ( 88) | 734m 42s, 39 samples/s | loss: 14.241, gen: 4.005, dis: 1.322, KLD: 0.172, DIV_REG: -3.640, 
+2022-09-21 23:54:28,613: EP 66 (132) | 736m 59s, 41 samples/s | loss: 14.718, gen: 4.119, dis: 1.301, KLD: 0.172, DIV_REG: -3.727, 
+2022-09-21 23:56:46,326: EP 66 (176) | 739m 17s, 41 samples/s | loss: 14.490, gen: 4.064, dis: 1.311, KLD: 0.172, DIV_REG: -3.665, 
+2022-09-21 23:59:04,135: EP 66 (220) | 741m 35s, 41 samples/s | loss: 14.621, gen: 4.140, dis: 1.298, KLD: 0.172, DIV_REG: -3.698, 
+2022-09-21 23:59:28,546: [VAL] loss: 0.091, joint mae: 0.03334, accel diff: 0.00970, FGD: 21.121, feat_D: 136.818 / 11.8s
+2022-09-21 23:59:28,547:   best validation loss so far: 17.472 at EPOCH 58
+2022-09-22 00:01:46,451: EP 67 ( 44) | 744m 17s, 40 samples/s | loss: 14.403, gen: 4.086, dis: 1.308, KLD: 0.172, DIV_REG: -3.711, 
+2022-09-22 00:04:04,141: EP 67 ( 88) | 746m 35s, 41 samples/s | loss: 14.321, gen: 4.064, dis: 1.310, KLD: 0.173, DIV_REG: -3.745, 
+2022-09-22 00:06:21,988: EP 67 (132) | 748m 53s, 40 samples/s | loss: 14.637, gen: 4.082, dis: 1.305, KLD: 0.172, DIV_REG: -3.768, 
+2022-09-22 00:08:39,778: EP 67 (176) | 751m 10s, 41 samples/s | loss: 14.411, gen: 4.059, dis: 1.314, KLD: 0.172, DIV_REG: -3.739, 
+2022-09-22 00:10:57,836: EP 67 (220) | 753m 29s, 41 samples/s | loss: 14.323, gen: 4.069, dis: 1.315, KLD: 0.172, DIV_REG: -3.691, 
+2022-09-22 00:11:22,286: [VAL] loss: 0.092, joint mae: 0.03345, accel diff: 0.00971, FGD: 20.571, feat_D: 136.536 / 11.9s
+2022-09-22 00:11:22,287:   best validation loss so far: 17.472 at EPOCH 58
+2022-09-22 00:13:40,084: EP 68 ( 44) | 756m 11s, 43 samples/s | loss: 14.643, gen: 4.133, dis: 1.308, KLD: 0.173, DIV_REG: -3.784, 
+2022-09-22 00:15:57,771: EP 68 ( 88) | 758m 28s, 41 samples/s | loss: 14.311, gen: 4.064, dis: 1.308, KLD: 0.172, DIV_REG: -3.700, 
+2022-09-22 00:18:15,538: EP 68 (132) | 760m 46s, 42 samples/s | loss: 14.215, gen: 4.107, dis: 1.315, KLD: 0.172, DIV_REG: -3.672, 
+2022-09-22 00:20:33,023: EP 68 (176) |  763m 4s, 41 samples/s | loss: 14.422, gen: 4.110, dis: 1.311, KLD: 0.172, DIV_REG: -3.745, 
+2022-09-22 00:22:50,563: EP 68 (220) | 765m 21s, 41 samples/s | loss: 14.400, gen: 4.061, dis: 1.316, KLD: 0.172, DIV_REG: -3.709, 
+2022-09-22 00:23:14,758: [VAL] loss: 0.091, joint mae: 0.03319, accel diff: 0.00948, FGD: 24.045, feat_D: 135.894 / 11.9s
+2022-09-22 00:23:14,759:   best validation loss so far: 17.472 at EPOCH 58
+2022-09-22 00:25:32,291: EP 69 ( 44) |  768m 3s, 41 samples/s | loss: 14.224, gen: 4.044, dis: 1.301, KLD: 0.173, DIV_REG: -3.778, 
+2022-09-22 00:27:49,449: EP 69 ( 88) | 770m 20s, 41 samples/s | loss: 13.984, gen: 4.109, dis: 1.308, KLD: 0.172, DIV_REG: -3.749, 
+2022-09-22 00:30:06,820: EP 69 (132) | 772m 38s, 41 samples/s | loss: 14.283, gen: 4.118, dis: 1.298, KLD: 0.172, DIV_REG: -3.776, 
+2022-09-22 00:32:24,231: EP 69 (176) | 774m 55s, 41 samples/s | loss: 14.323, gen: 4.136, dis: 1.299, KLD: 0.173, DIV_REG: -3.796, 
+2022-09-22 00:34:41,852: EP 69 (220) | 777m 13s, 41 samples/s | loss: 14.682, gen: 4.174, dis: 1.305, KLD: 0.173, DIV_REG: -3.781, 
+2022-09-22 00:35:06,193: [VAL] loss: 0.091, joint mae: 0.03317, accel diff: 0.00968, FGD: 19.078, feat_D: 136.277 / 11.8s
+2022-09-22 00:35:06,194:   best validation loss so far: 17.472 at EPOCH 58
+2022-09-22 00:35:27,031: saved sample videos, took 20.8s
+2022-09-22 00:37:44,430: EP 70 ( 44) | 780m 15s, 41 samples/s | loss: 14.346, gen: 4.106, dis: 1.316, KLD: 0.173, DIV_REG: -3.815, 
+2022-09-22 00:40:01,637: EP 70 ( 88) | 782m 32s, 41 samples/s | loss: 14.046, gen: 4.060, dis: 1.307, KLD: 0.173, DIV_REG: -3.744, 
+2022-09-22 00:42:18,870: EP 70 (132) | 784m 50s, 41 samples/s | loss: 14.316, gen: 4.190, dis: 1.301, KLD: 0.174, DIV_REG: -3.807, 
+2022-09-22 00:44:36,155: EP 70 (176) |  787m 7s, 41 samples/s | loss: 14.312, gen: 4.078, dis: 1.306, KLD: 0.174, DIV_REG: -3.780, 
+2022-09-22 00:46:53,968: EP 70 (220) | 789m 25s, 40 samples/s | loss: 14.177, gen: 4.112, dis: 1.310, KLD: 0.174, DIV_REG: -3.770, 
+2022-09-22 00:47:18,372: [VAL] loss: 0.093, joint mae: 0.03377, accel diff: 0.00985, FGD: 18.394, feat_D: 139.161 / 11.8s
+2022-09-22 00:47:18,373:   best validation loss so far: 17.472 at EPOCH 58
+2022-09-22 00:49:35,791: EP 71 ( 44) |  792m 6s, 41 samples/s | loss: 14.197, gen: 4.125, dis: 1.306, KLD: 0.174, DIV_REG: -3.822, 
+2022-09-22 00:51:53,400: EP 71 ( 88) | 794m 24s, 41 samples/s | loss: 14.065, gen: 4.068, dis: 1.314, KLD: 0.174, DIV_REG: -3.825, 
+2022-09-22 00:54:11,147: EP 71 (132) | 796m 42s, 41 samples/s | loss: 14.640, gen: 4.109, dis: 1.302, KLD: 0.175, DIV_REG: -3.836, 
+2022-09-22 00:56:28,989: EP 71 (176) |  799m 0s, 41 samples/s | loss: 14.460, gen: 4.131, dis: 1.301, KLD: 0.175, DIV_REG: -3.811, 
+2022-09-22 00:58:46,363: EP 71 (220) | 801m 17s, 42 samples/s | loss: 14.258, gen: 4.103, dis: 1.302, KLD: 0.175, DIV_REG: -3.826, 
+2022-09-22 00:59:10,836: [VAL] loss: 0.092, joint mae: 0.03349, accel diff: 0.00985, FGD: 18.449, feat_D: 137.715 / 11.8s
+2022-09-22 00:59:10,837:   best validation loss so far: 17.472 at EPOCH 58
+2022-09-22 01:01:28,448: EP 72 ( 44) | 803m 59s, 41 samples/s | loss: 14.277, gen: 4.107, dis: 1.297, KLD: 0.175, DIV_REG: -3.865, 
+2022-09-22 01:03:45,512: EP 72 ( 88) | 806m 16s, 41 samples/s | loss: 14.279, gen: 4.059, dis: 1.306, KLD: 0.175, DIV_REG: -3.847, 
+2022-09-22 01:06:03,132: EP 72 (132) | 808m 34s, 40 samples/s | loss: 14.010, gen: 4.081, dis: 1.306, KLD: 0.175, DIV_REG: -3.764, 
+2022-09-22 01:08:20,696: EP 72 (176) | 810m 51s, 41 samples/s | loss: 14.336, gen: 4.121, dis: 1.297, KLD: 0.175, DIV_REG: -3.900, 
+2022-09-22 01:10:38,074: EP 72 (220) |  813m 9s, 41 samples/s | loss: 14.222, gen: 4.001, dis: 1.311, KLD: 0.175, DIV_REG: -3.854, 
+2022-09-22 01:11:02,220: [VAL] loss: 0.091, joint mae: 0.03323, accel diff: 0.00974, FGD: 21.654, feat_D: 136.796 / 11.8s
+2022-09-22 01:11:02,221:   best validation loss so far: 17.472 at EPOCH 58
+2022-09-22 01:13:19,825: EP 73 ( 44) | 815m 51s, 41 samples/s | loss: 13.994, gen: 4.158, dis: 1.308, KLD: 0.175, DIV_REG: -3.854, 
+2022-09-22 01:15:37,153: EP 73 ( 88) |  818m 8s, 41 samples/s | loss: 14.134, gen: 4.093, dis: 1.306, KLD: 0.174, DIV_REG: -3.851, 
+2022-09-22 01:17:54,590: EP 73 (132) | 820m 25s, 41 samples/s | loss: 14.159, gen: 4.108, dis: 1.301, KLD: 0.174, DIV_REG: -3.893, 
+2022-09-22 01:20:12,203: EP 73 (176) | 822m 43s, 41 samples/s | loss: 14.452, gen: 4.094, dis: 1.306, KLD: 0.175, DIV_REG: -3.877, 
+2022-09-22 01:22:29,547: EP 73 (220) |  825m 0s, 41 samples/s | loss: 14.215, gen: 4.192, dis: 1.295, KLD: 0.175, DIV_REG: -3.870, 
+2022-09-22 01:22:53,923: [VAL] loss: 0.091, joint mae: 0.03338, accel diff: 0.01001, FGD: 18.179, feat_D: 136.936 / 11.8s
+2022-09-22 01:22:53,924:   best validation loss so far: 17.472 at EPOCH 58
+2022-09-22 01:25:11,426: EP 74 ( 44) | 827m 42s, 41 samples/s | loss: 14.269, gen: 4.116, dis: 1.310, KLD: 0.175, DIV_REG: -3.944, 
+2022-09-22 01:27:28,590: EP 74 ( 88) | 829m 59s, 40 samples/s | loss: 14.461, gen: 4.106, dis: 1.295, KLD: 0.176, DIV_REG: -3.955, 
+2022-09-22 01:29:46,041: EP 74 (132) | 832m 17s, 40 samples/s | loss: 14.559, gen: 4.117, dis: 1.307, KLD: 0.176, DIV_REG: -3.946, 
+2022-09-22 01:32:03,440: EP 74 (176) | 834m 34s, 41 samples/s | loss: 14.326, gen: 4.129, dis: 1.292, KLD: 0.176, DIV_REG: -3.892, 
+2022-09-22 01:34:21,305: EP 74 (220) | 836m 52s, 41 samples/s | loss: 14.155, gen: 4.147, dis: 1.307, KLD: 0.176, DIV_REG: -3.801, 
+2022-09-22 01:34:45,717: [VAL] loss: 0.093, joint mae: 0.03397, accel diff: 0.00989, FGD: 18.638, feat_D: 137.277 / 11.8s
+2022-09-22 01:34:45,718:   best validation loss so far: 17.472 at EPOCH 58
+2022-09-22 01:37:03,313: EP 75 ( 44) | 839m 34s, 40 samples/s | loss: 14.146, gen: 4.125, dis: 1.297, KLD: 0.176, DIV_REG: -3.894, 
+2022-09-22 01:39:20,991: EP 75 ( 88) | 841m 52s, 40 samples/s | loss: 14.282, gen: 4.143, dis: 1.302, KLD: 0.176, DIV_REG: -3.913, 
+2022-09-22 01:41:38,483: EP 75 (132) |  844m 9s, 40 samples/s | loss: 14.094, gen: 4.107, dis: 1.309, KLD: 0.176, DIV_REG: -3.904, 
+2022-09-22 01:43:56,254: EP 75 (176) | 846m 27s, 41 samples/s | loss: 14.189, gen: 4.099, dis: 1.308, KLD: 0.177, DIV_REG: -3.951, 
+2022-09-22 01:46:13,799: EP 75 (220) | 848m 45s, 41 samples/s | loss: 14.305, gen: 4.153, dis: 1.300, KLD: 0.177, DIV_REG: -3.929, 
+2022-09-22 01:46:38,173: [VAL] loss: 0.095, joint mae: 0.03450, accel diff: 0.01015, FGD: 20.788, feat_D: 139.272 / 11.8s
+2022-09-22 01:46:38,174:   best validation loss so far: 17.472 at EPOCH 58
+2022-09-22 01:48:55,639: EP 76 ( 44) | 851m 26s, 43 samples/s | loss: 13.993, gen: 4.125, dis: 1.306, KLD: 0.177, DIV_REG: -3.906, 
+2022-09-22 01:51:12,965: EP 76 ( 88) | 853m 44s, 44 samples/s | loss: 14.129, gen: 4.170, dis: 1.299, KLD: 0.177, DIV_REG: -3.960, 
+2022-09-22 01:53:30,367: EP 76 (132) |  856m 1s, 41 samples/s | loss: 14.134, gen: 4.107, dis: 1.293, KLD: 0.176, DIV_REG: -3.929, 
+2022-09-22 01:55:47,758: EP 76 (176) | 858m 18s, 42 samples/s | loss: 14.319, gen: 4.145, dis: 1.304, KLD: 0.176, DIV_REG: -4.001, 
+2022-09-22 01:58:05,002: EP 76 (220) | 860m 36s, 40 samples/s | loss: 14.188, gen: 4.189, dis: 1.294, KLD: 0.176, DIV_REG: -3.966, 
+2022-09-22 01:58:29,148: [VAL] loss: 0.092, joint mae: 0.03362, accel diff: 0.00988, FGD: 18.588, feat_D: 136.498 / 11.8s
+2022-09-22 01:58:29,149:   best validation loss so far: 17.472 at EPOCH 58
+2022-09-22 02:00:46,536: EP 77 ( 44) | 863m 17s, 41 samples/s | loss: 14.058, gen: 4.092, dis: 1.305, KLD: 0.176, DIV_REG: -3.959, 
+2022-09-22 02:03:04,220: EP 77 ( 88) | 865m 35s, 40 samples/s | loss: 13.997, gen: 4.118, dis: 1.305, KLD: 0.176, DIV_REG: -3.983, 
+2022-09-22 02:05:21,916: EP 77 (132) | 867m 53s, 40 samples/s | loss: 14.045, gen: 4.142, dis: 1.292, KLD: 0.176, DIV_REG: -3.969, 
+2022-09-22 02:07:39,679: EP 77 (176) | 870m 10s, 41 samples/s | loss: 14.114, gen: 4.108, dis: 1.304, KLD: 0.177, DIV_REG: -4.006, 
+2022-09-22 02:09:57,410: EP 77 (220) | 872m 28s, 40 samples/s | loss: 14.389, gen: 4.089, dis: 1.300, KLD: 0.177, DIV_REG: -4.029, 
+2022-09-22 02:10:21,762: [VAL] loss: 0.092, joint mae: 0.03346, accel diff: 0.00962, FGD: 19.803, feat_D: 136.487 / 11.8s
+2022-09-22 02:10:21,763:   best validation loss so far: 17.472 at EPOCH 58
+2022-09-22 02:12:39,140: EP 78 ( 44) | 875m 10s, 41 samples/s | loss: 13.901, gen: 4.117, dis: 1.297, KLD: 0.176, DIV_REG: -3.993, 
+2022-09-22 02:14:56,861: EP 78 ( 88) | 877m 28s, 41 samples/s | loss: 14.065, gen: 4.209, dis: 1.296, KLD: 0.177, DIV_REG: -4.073, 
+2022-09-22 02:17:14,543: EP 78 (132) | 879m 45s, 41 samples/s | loss: 14.238, gen: 4.140, dis: 1.300, KLD: 0.177, DIV_REG: -4.017, 
+2022-09-22 02:19:32,140: EP 78 (176) |  882m 3s, 40 samples/s | loss: 14.047, gen: 4.180, dis: 1.296, KLD: 0.177, DIV_REG: -4.003, 
+2022-09-22 02:21:49,599: EP 78 (220) | 884m 20s, 40 samples/s | loss: 14.196, gen: 4.176, dis: 1.297, KLD: 0.178, DIV_REG: -3.994, 
+2022-09-22 02:22:14,062: [VAL] loss: 0.093, joint mae: 0.03389, accel diff: 0.01007, FGD: 19.061, feat_D: 139.521 / 11.9s
+2022-09-22 02:22:14,062:   best validation loss so far: 17.472 at EPOCH 58
+2022-09-22 02:24:31,600: EP 79 ( 44) |  887m 2s, 41 samples/s | loss: 13.800, gen: 4.127, dis: 1.303, KLD: 0.178, DIV_REG: -4.035, 
+2022-09-22 02:26:49,180: EP 79 ( 88) | 889m 20s, 40 samples/s | loss: 13.899, gen: 4.182, dis: 1.294, KLD: 0.178, DIV_REG: -4.030, 
+2022-09-22 02:29:06,530: EP 79 (132) | 891m 37s, 41 samples/s | loss: 14.206, gen: 4.229, dis: 1.292, KLD: 0.178, DIV_REG: -4.058, 
+2022-09-22 02:31:23,656: EP 79 (176) | 893m 54s, 40 samples/s | loss: 14.428, gen: 4.180, dis: 1.297, KLD: 0.178, DIV_REG: -4.125, 
+2022-09-22 02:33:40,924: EP 79 (220) | 896m 12s, 41 samples/s | loss: 14.099, gen: 4.178, dis: 1.300, KLD: 0.178, DIV_REG: -4.041, 
+2022-09-22 02:34:05,512: [VAL] loss: 0.092, joint mae: 0.03359, accel diff: 0.00988, FGD: 19.433, feat_D: 137.669 / 11.8s
+2022-09-22 02:34:05,513:   best validation loss so far: 17.472 at EPOCH 58
+2022-09-22 02:34:05,701: Saved the checkpoint
+2022-09-22 02:34:26,473: saved sample videos, took 20.8s
+2022-09-22 02:36:43,779: EP 80 ( 44) | 899m 14s, 43 samples/s | loss: 13.957, gen: 4.161, dis: 1.305, KLD: 0.178, DIV_REG: -4.058, 
+2022-09-22 02:39:00,971: EP 80 ( 88) | 901m 32s, 42 samples/s | loss: 13.991, gen: 4.193, dis: 1.295, KLD: 0.178, DIV_REG: -4.050, 
+2022-09-22 02:41:17,883: EP 80 (132) | 903m 49s, 42 samples/s | loss: 14.075, gen: 4.171, dis: 1.286, KLD: 0.179, DIV_REG: -4.086, 
+2022-09-22 02:43:34,928: EP 80 (176) |  906m 6s, 41 samples/s | loss: 14.330, gen: 4.140, dis: 1.299, KLD: 0.178, DIV_REG: -4.045, 
+2022-09-22 02:45:52,241: EP 80 (220) | 908m 23s, 41 samples/s | loss: 14.271, gen: 4.170, dis: 1.296, KLD: 0.178, DIV_REG: -4.117, 
+2022-09-22 02:46:16,215: [VAL] loss: 0.093, joint mae: 0.03393, accel diff: 0.00992, FGD: 14.953, feat_D: 138.459 / 11.8s
+2022-09-22 02:46:16,216:   *** BEST VALIDATION LOSS: 14.953
+2022-09-22 02:46:16,415: Saved the checkpoint
+2022-09-22 02:48:34,122: EP 81 ( 44) |  911m 5s, 41 samples/s | loss: 13.800, gen: 4.084, dis: 1.303, KLD: 0.178, DIV_REG: -4.058, 
+2022-09-22 02:50:51,650: EP 81 ( 88) | 913m 22s, 41 samples/s | loss: 13.911, gen: 4.213, dis: 1.291, KLD: 0.178, DIV_REG: -4.064, 
+2022-09-22 02:53:09,332: EP 81 (132) | 915m 40s, 41 samples/s | loss: 14.178, gen: 4.195, dis: 1.299, KLD: 0.178, DIV_REG: -4.089, 
+2022-09-22 02:55:26,932: EP 81 (176) | 917m 58s, 41 samples/s | loss: 14.112, gen: 4.192, dis: 1.298, KLD: 0.178, DIV_REG: -4.131, 
+2022-09-22 02:57:44,856: EP 81 (220) | 920m 16s, 41 samples/s | loss: 14.342, gen: 4.188, dis: 1.291, KLD: 0.178, DIV_REG: -4.096, 
+2022-09-22 02:58:09,298: [VAL] loss: 0.091, joint mae: 0.03345, accel diff: 0.00962, FGD: 20.074, feat_D: 135.792 / 11.8s
+2022-09-22 02:58:09,301:   best validation loss so far: 14.953 at EPOCH 81
+2022-09-22 03:00:26,898: EP 82 ( 44) | 922m 58s, 40 samples/s | loss: 14.019, gen: 4.169, dis: 1.297, KLD: 0.178, DIV_REG: -4.089, 
+2022-09-22 03:02:44,546: EP 82 ( 88) | 925m 15s, 41 samples/s | loss: 13.904, gen: 4.045, dis: 1.312, KLD: 0.178, DIV_REG: -4.077, 
+2022-09-22 03:05:01,757: EP 82 (132) | 927m 32s, 40 samples/s | loss: 13.891, gen: 4.094, dis: 1.304, KLD: 0.178, DIV_REG: -4.164, 
+2022-09-22 03:07:19,315: EP 82 (176) | 929m 50s, 41 samples/s | loss: 14.196, gen: 4.089, dis: 1.306, KLD: 0.179, DIV_REG: -4.092, 
+2022-09-22 03:09:36,599: EP 82 (220) |  932m 7s, 41 samples/s | loss: 14.286, gen: 4.135, dis: 1.300, KLD: 0.179, DIV_REG: -4.152, 
+2022-09-22 03:10:01,099: [VAL] loss: 0.091, joint mae: 0.03334, accel diff: 0.00981, FGD: 22.279, feat_D: 135.137 / 11.9s
+2022-09-22 03:10:01,102:   best validation loss so far: 14.953 at EPOCH 81
+2022-09-22 03:12:18,846: EP 83 ( 44) | 934m 50s, 41 samples/s | loss: 13.820, gen: 4.086, dis: 1.295, KLD: 0.178, DIV_REG: -4.142, 
+2022-09-22 03:14:36,379: EP 83 ( 88) |  937m 7s, 41 samples/s | loss: 13.884, gen: 4.176, dis: 1.294, KLD: 0.178, DIV_REG: -4.178, 
+2022-09-22 03:16:53,889: EP 83 (132) | 939m 25s, 41 samples/s | loss: 13.893, gen: 4.155, dis: 1.289, KLD: 0.178, DIV_REG: -4.121, 
+2022-09-22 03:19:11,288: EP 83 (176) | 941m 42s, 41 samples/s | loss: 14.100, gen: 4.150, dis: 1.294, KLD: 0.178, DIV_REG: -4.143, 
+2022-09-22 03:21:29,717: EP 83 (220) |  944m 0s, 41 samples/s | loss: 13.905, gen: 4.242, dis: 1.285, KLD: 0.178, DIV_REG: -4.186, 
+2022-09-22 03:21:54,216: [VAL] loss: 0.090, joint mae: 0.03290, accel diff: 0.00954, FGD: 22.005, feat_D: 135.207 / 11.9s
+2022-09-22 03:21:54,217:   best validation loss so far: 14.953 at EPOCH 81
+2022-09-22 03:24:11,546: EP 84 ( 44) | 946m 42s, 43 samples/s | loss: 13.953, gen: 4.205, dis: 1.297, KLD: 0.178, DIV_REG: -4.169, 
+2022-09-22 03:26:29,007: EP 84 ( 88) |  949m 0s, 43 samples/s | loss: 13.816, gen: 4.208, dis: 1.302, KLD: 0.178, DIV_REG: -4.134, 
+2022-09-22 03:28:46,324: EP 84 (132) | 951m 17s, 42 samples/s | loss: 13.975, gen: 4.204, dis: 1.292, KLD: 0.178, DIV_REG: -4.134, 
+2022-09-22 03:31:03,695: EP 84 (176) | 953m 34s, 41 samples/s | loss: 13.982, gen: 4.132, dis: 1.300, KLD: 0.178, DIV_REG: -4.236, 
+2022-09-22 03:33:21,047: EP 84 (220) | 955m 52s, 41 samples/s | loss: 14.059, gen: 4.234, dis: 1.290, KLD: 0.179, DIV_REG: -4.226, 
+2022-09-22 03:33:45,123: [VAL] loss: 0.092, joint mae: 0.03360, accel diff: 0.00973, FGD: 24.814, feat_D: 136.639 / 11.8s
+2022-09-22 03:33:45,124:   best validation loss so far: 14.953 at EPOCH 81
+2022-09-22 03:36:02,924: EP 85 ( 44) | 958m 34s, 41 samples/s | loss: 13.601, gen: 4.156, dis: 1.296, KLD: 0.179, DIV_REG: -4.175, 
+2022-09-22 03:38:20,646: EP 85 ( 88) | 960m 51s, 41 samples/s | loss: 14.180, gen: 4.281, dis: 1.288, KLD: 0.179, DIV_REG: -4.232, 
+2022-09-22 03:40:38,152: EP 85 (132) |  963m 9s, 41 samples/s | loss: 14.161, gen: 4.255, dis: 1.298, KLD: 0.179, DIV_REG: -4.219, 
+2022-09-22 03:42:55,298: EP 85 (176) | 965m 26s, 41 samples/s | loss: 14.136, gen: 4.179, dis: 1.302, KLD: 0.179, DIV_REG: -4.240, 
+2022-09-22 03:45:12,693: EP 85 (220) | 967m 43s, 41 samples/s | loss: 14.195, gen: 4.150, dis: 1.309, KLD: 0.180, DIV_REG: -4.221, 
+2022-09-22 03:45:36,958: [VAL] loss: 0.093, joint mae: 0.03390, accel diff: 0.01016, FGD: 18.472, feat_D: 140.569 / 11.8s
+2022-09-22 03:45:36,959:   best validation loss so far: 14.953 at EPOCH 81
+2022-09-22 03:47:54,258: EP 86 ( 44) | 970m 25s, 41 samples/s | loss: 14.081, gen: 4.145, dis: 1.291, KLD: 0.179, DIV_REG: -4.217, 
+2022-09-22 03:50:11,786: EP 86 ( 88) | 972m 42s, 41 samples/s | loss: 13.749, gen: 4.215, dis: 1.294, KLD: 0.179, DIV_REG: -4.295, 
+2022-09-22 03:52:29,145: EP 86 (132) |  975m 0s, 41 samples/s | loss: 14.132, gen: 4.197, dis: 1.293, KLD: 0.179, DIV_REG: -4.306, 
+2022-09-22 03:54:46,912: EP 86 (176) | 977m 18s, 40 samples/s | loss: 14.175, gen: 4.236, dis: 1.296, KLD: 0.179, DIV_REG: -4.240, 
+2022-09-22 03:57:04,520: EP 86 (220) | 979m 35s, 41 samples/s | loss: 13.745, gen: 4.142, dis: 1.300, KLD: 0.180, DIV_REG: -4.176, 
+2022-09-22 03:57:28,924: [VAL] loss: 0.092, joint mae: 0.03350, accel diff: 0.00972, FGD: 25.157, feat_D: 136.348 / 11.8s
+2022-09-22 03:57:28,925:   best validation loss so far: 14.953 at EPOCH 81
+2022-09-22 03:59:46,326: EP 87 ( 44) | 982m 17s, 41 samples/s | loss: 13.611, gen: 4.149, dis: 1.298, KLD: 0.180, DIV_REG: -4.180, 
+2022-09-22 04:02:03,891: EP 87 ( 88) | 984m 35s, 41 samples/s | loss: 13.701, gen: 4.206, dis: 1.287, KLD: 0.180, DIV_REG: -4.255, 
+2022-09-22 04:04:21,272: EP 87 (132) | 986m 52s, 40 samples/s | loss: 14.033, gen: 4.152, dis: 1.284, KLD: 0.180, DIV_REG: -4.312, 
+2022-09-22 04:06:38,785: EP 87 (176) |  989m 9s, 41 samples/s | loss: 14.007, gen: 4.185, dis: 1.291, KLD: 0.180, DIV_REG: -4.318, 
+2022-09-22 04:08:56,394: EP 87 (220) | 991m 27s, 41 samples/s | loss: 14.040, gen: 4.154, dis: 1.294, KLD: 0.180, DIV_REG: -4.271, 
+2022-09-22 04:09:20,869: [VAL] loss: 0.092, joint mae: 0.03386, accel diff: 0.01007, FGD: 16.886, feat_D: 137.505 / 11.8s
+2022-09-22 04:09:20,870:   best validation loss so far: 14.953 at EPOCH 81
+2022-09-22 04:11:38,442: EP 88 ( 44) |  994m 9s, 41 samples/s | loss: 13.824, gen: 4.202, dis: 1.285, KLD: 0.180, DIV_REG: -4.247, 
+2022-09-22 04:13:56,061: EP 88 ( 88) | 996m 27s, 42 samples/s | loss: 13.684, gen: 4.179, dis: 1.300, KLD: 0.179, DIV_REG: -4.249, 
+2022-09-22 04:16:13,710: EP 88 (132) | 998m 44s, 43 samples/s | loss: 14.022, gen: 4.282, dis: 1.288, KLD: 0.179, DIV_REG: -4.274, 
+2022-09-22 04:18:31,165: EP 88 (176) | 1001m 2s, 43 samples/s | loss: 14.044, gen: 4.226, dis: 1.293, KLD: 0.179, DIV_REG: -4.306, 
+2022-09-22 04:20:48,921: EP 88 (220) | 1003m 20s, 41 samples/s | loss: 14.443, gen: 4.187, dis: 1.284, KLD: 0.180, DIV_REG: -4.326, 
+2022-09-22 04:21:13,163: [VAL] loss: 0.094, joint mae: 0.03416, accel diff: 0.01028, FGD: 16.436, feat_D: 140.483 / 11.8s
+2022-09-22 04:21:13,167:   best validation loss so far: 14.953 at EPOCH 81
+2022-09-22 04:23:30,742: EP 89 ( 44) | 1006m 1s, 41 samples/s | loss: 13.917, gen: 4.181, dis: 1.297, KLD: 0.180, DIV_REG: -4.283, 
+2022-09-22 04:25:48,541: EP 89 ( 88) | 1008m 19s, 41 samples/s | loss: 14.010, gen: 4.203, dis: 1.293, KLD: 0.180, DIV_REG: -4.294, 
+2022-09-22 04:28:06,492: EP 89 (132) | 1010m 37s, 41 samples/s | loss: 13.822, gen: 4.233, dis: 1.287, KLD: 0.180, DIV_REG: -4.368, 
+2022-09-22 04:30:24,391: EP 89 (176) | 1012m 55s, 40 samples/s | loss: 13.891, gen: 4.190, dis: 1.299, KLD: 0.180, DIV_REG: -4.269, 
+2022-09-22 04:32:42,199: EP 89 (220) | 1015m 13s, 41 samples/s | loss: 14.426, gen: 4.230, dis: 1.284, KLD: 0.181, DIV_REG: -4.410, 
+2022-09-22 04:33:06,368: [VAL] loss: 0.092, joint mae: 0.03358, accel diff: 0.00978, FGD: 18.537, feat_D: 135.915 / 11.8s
+2022-09-22 04:33:06,406:   best validation loss so far: 14.953 at EPOCH 81
+2022-09-22 04:33:27,207: saved sample videos, took 20.8s
+2022-09-22 04:35:44,405: EP 90 ( 44) | 1018m 15s, 41 samples/s | loss: 13.854, gen: 4.185, dis: 1.300, KLD: 0.181, DIV_REG: -4.357, 
+2022-09-22 04:38:01,533: EP 90 ( 88) | 1020m 32s, 40 samples/s | loss: 13.933, gen: 4.154, dis: 1.286, KLD: 0.181, DIV_REG: -4.355, 
+2022-09-22 04:40:18,703: EP 90 (132) | 1022m 49s, 40 samples/s | loss: 14.553, gen: 4.182, dis: 1.289, KLD: 0.182, DIV_REG: -4.364, 
+2022-09-22 04:42:36,267: EP 90 (176) | 1025m 7s, 41 samples/s | loss: 14.253, gen: 4.244, dis: 1.284, KLD: 0.183, DIV_REG: -4.278, 
+2022-09-22 04:44:53,618: EP 90 (220) | 1027m 24s, 41 samples/s | loss: 14.388, gen: 4.274, dis: 1.282, KLD: 0.183, DIV_REG: -4.398, 
+2022-09-22 04:45:18,201: [VAL] loss: 0.093, joint mae: 0.03373, accel diff: 0.00985, FGD: 17.860, feat_D: 137.083 / 11.9s
+2022-09-22 04:45:18,202:   best validation loss so far: 14.953 at EPOCH 81
+2022-09-22 04:47:36,136: EP 91 ( 44) | 1030m 7s, 41 samples/s | loss: 13.963, gen: 4.219, dis: 1.292, KLD: 0.183, DIV_REG: -4.361, 
+2022-09-22 04:49:53,703: EP 91 ( 88) | 1032m 24s, 41 samples/s | loss: 14.084, gen: 4.217, dis: 1.299, KLD: 0.183, DIV_REG: -4.374, 
+2022-09-22 04:52:11,441: EP 91 (132) | 1034m 42s, 41 samples/s | loss: 13.866, gen: 4.227, dis: 1.274, KLD: 0.183, DIV_REG: -4.389, 
+2022-09-22 04:54:28,843: EP 91 (176) | 1037m 0s, 40 samples/s | loss: 13.845, gen: 4.229, dis: 1.299, KLD: 0.183, DIV_REG: -4.364, 
+2022-09-22 04:56:46,875: EP 91 (220) | 1039m 18s, 40 samples/s | loss: 14.029, gen: 4.258, dis: 1.274, KLD: 0.183, DIV_REG: -4.464, 
+2022-09-22 04:57:11,356: [VAL] loss: 0.092, joint mae: 0.03355, accel diff: 0.00978, FGD: 18.351, feat_D: 137.134 / 11.8s
+2022-09-22 04:57:11,357:   best validation loss so far: 14.953 at EPOCH 81
+2022-09-22 04:59:29,014: EP 92 ( 44) | 1042m 0s, 43 samples/s | loss: 13.755, gen: 4.263, dis: 1.290, KLD: 0.184, DIV_REG: -4.402, 
+2022-09-22 05:01:46,929: EP 92 ( 88) | 1044m 18s, 43 samples/s | loss: 13.773, gen: 4.232, dis: 1.288, KLD: 0.184, DIV_REG: -4.429, 
+2022-09-22 05:04:04,870: EP 92 (132) | 1046m 36s, 43 samples/s | loss: 14.028, gen: 4.237, dis: 1.282, KLD: 0.184, DIV_REG: -4.455, 
+2022-09-22 05:06:22,766: EP 92 (176) | 1048m 53s, 41 samples/s | loss: 14.058, gen: 4.316, dis: 1.289, KLD: 0.184, DIV_REG: -4.445, 
+2022-09-22 05:08:40,454: EP 92 (220) | 1051m 11s, 41 samples/s | loss: 14.207, gen: 4.213, dis: 1.288, KLD: 0.184, DIV_REG: -4.390, 
+2022-09-22 05:09:04,666: [VAL] loss: 0.095, joint mae: 0.03440, accel diff: 0.01045, FGD: 14.637, feat_D: 141.092 / 11.8s
+2022-09-22 05:09:04,667:   *** BEST VALIDATION LOSS: 14.637
+2022-09-22 05:09:04,864: Saved the checkpoint
+2022-09-22 05:11:22,972: EP 93 ( 44) | 1053m 54s, 41 samples/s | loss: 13.744, gen: 4.230, dis: 1.293, KLD: 0.184, DIV_REG: -4.467, 
+2022-09-22 05:13:40,729: EP 93 ( 88) | 1056m 11s, 41 samples/s | loss: 13.919, gen: 4.252, dis: 1.291, KLD: 0.184, DIV_REG: -4.460, 
+2022-09-22 05:15:58,601: EP 93 (132) | 1058m 29s, 41 samples/s | loss: 14.109, gen: 4.346, dis: 1.277, KLD: 0.184, DIV_REG: -4.541, 
+2022-09-22 05:18:16,634: EP 93 (176) | 1060m 47s, 40 samples/s | loss: 14.238, gen: 4.278, dis: 1.280, KLD: 0.184, DIV_REG: -4.376, 
+2022-09-22 05:20:34,894: EP 93 (220) | 1063m 6s, 41 samples/s | loss: 14.218, gen: 4.337, dis: 1.285, KLD: 0.185, DIV_REG: -4.444, 
+2022-09-22 05:20:59,345: [VAL] loss: 0.091, joint mae: 0.03330, accel diff: 0.00990, FGD: 18.053, feat_D: 136.040 / 11.8s
+2022-09-22 05:20:59,346:   best validation loss so far: 14.637 at EPOCH 93
+2022-09-22 05:23:17,383: EP 94 ( 44) | 1065m 48s, 40 samples/s | loss: 13.869, gen: 4.231, dis: 1.288, KLD: 0.185, DIV_REG: -4.525, 
+2022-09-22 05:25:35,609: EP 94 ( 88) | 1068m 6s, 40 samples/s | loss: 14.016, gen: 4.280, dis: 1.288, KLD: 0.184, DIV_REG: -4.439, 
+2022-09-22 05:27:53,646: EP 94 (132) | 1070m 24s, 41 samples/s | loss: 13.856, gen: 4.312, dis: 1.279, KLD: 0.184, DIV_REG: -4.442, 
+2022-09-22 05:30:12,220: EP 94 (176) | 1072m 43s, 41 samples/s | loss: 14.312, gen: 4.255, dis: 1.282, KLD: 0.184, DIV_REG: -4.466, 
+2022-09-22 05:32:30,642: EP 94 (220) | 1075m 1s, 40 samples/s | loss: 14.294, gen: 4.446, dis: 1.284, KLD: 0.184, DIV_REG: -4.461, 
+2022-09-22 05:32:55,138: [VAL] loss: 0.093, joint mae: 0.03387, accel diff: 0.01015, FGD: 17.281, feat_D: 139.284 / 11.8s
+2022-09-22 05:32:55,139:   best validation loss so far: 14.637 at EPOCH 93
+2022-09-22 05:35:13,837: EP 95 ( 44) | 1077m 45s, 41 samples/s | loss: 14.045, gen: 4.231, dis: 1.290, KLD: 0.184, DIV_REG: -4.491, 
+2022-09-22 05:37:32,136: EP 95 ( 88) | 1080m 3s, 41 samples/s | loss: 14.012, gen: 4.240, dis: 1.286, KLD: 0.184, DIV_REG: -4.433, 
+2022-09-22 05:39:50,671: EP 95 (132) | 1082m 21s, 41 samples/s | loss: 13.974, gen: 4.189, dis: 1.294, KLD: 0.185, DIV_REG: -4.444, 
+2022-09-22 05:42:08,562: EP 95 (176) | 1084m 39s, 40 samples/s | loss: 14.183, gen: 4.310, dis: 1.282, KLD: 0.184, DIV_REG: -4.478, 
+2022-09-22 05:44:26,667: EP 95 (220) | 1086m 57s, 40 samples/s | loss: 14.300, gen: 4.230, dis: 1.286, KLD: 0.185, DIV_REG: -4.610, 
+2022-09-22 05:44:51,190: [VAL] loss: 0.094, joint mae: 0.03440, accel diff: 0.01006, FGD: 17.390, feat_D: 139.144 / 11.8s
+2022-09-22 05:44:51,191:   best validation loss so far: 14.637 at EPOCH 93
+2022-09-22 05:47:09,472: EP 96 ( 44) | 1089m 40s, 40 samples/s | loss: 14.111, gen: 4.216, dis: 1.298, KLD: 0.185, DIV_REG: -4.492, 
+2022-09-22 05:49:27,568: EP 96 ( 88) | 1091m 58s, 41 samples/s | loss: 14.044, gen: 4.316, dis: 1.281, KLD: 0.185, DIV_REG: -4.654, 
+2022-09-22 05:51:45,682: EP 96 (132) | 1094m 16s, 42 samples/s | loss: 13.876, gen: 4.359, dis: 1.277, KLD: 0.186, DIV_REG: -4.496, 
+2022-09-22 05:54:03,904: EP 96 (176) | 1096m 35s, 43 samples/s | loss: 14.104, gen: 4.253, dis: 1.288, KLD: 0.186, DIV_REG: -4.545, 
+2022-09-22 05:56:21,918: EP 96 (220) | 1098m 53s, 42 samples/s | loss: 14.088, gen: 4.255, dis: 1.278, KLD: 0.186, DIV_REG: -4.500, 
+2022-09-22 05:56:46,241: [VAL] loss: 0.092, joint mae: 0.03353, accel diff: 0.00980, FGD: 24.591, feat_D: 136.802 / 11.8s
+2022-09-22 05:56:46,242:   best validation loss so far: 14.637 at EPOCH 93
+2022-09-22 05:59:04,751: EP 97 ( 44) | 1101m 35s, 41 samples/s | loss: 14.022, gen: 4.285, dis: 1.289, KLD: 0.185, DIV_REG: -4.556, 
+2022-09-22 06:01:22,980: EP 97 ( 88) | 1103m 54s, 40 samples/s | loss: 14.035, gen: 4.289, dis: 1.277, KLD: 0.185, DIV_REG: -4.552, 
+2022-09-22 06:03:40,939: EP 97 (132) | 1106m 12s, 40 samples/s | loss: 14.118, gen: 4.340, dis: 1.283, KLD: 0.186, DIV_REG: -4.603, 
+2022-09-22 06:05:58,873: EP 97 (176) | 1108m 30s, 41 samples/s | loss: 14.021, gen: 4.331, dis: 1.280, KLD: 0.186, DIV_REG: -4.504, 
+2022-09-22 06:08:16,968: EP 97 (220) | 1110m 48s, 41 samples/s | loss: 14.208, gen: 4.210, dis: 1.293, KLD: 0.186, DIV_REG: -4.548, 
+2022-09-22 06:08:41,275: [VAL] loss: 0.093, joint mae: 0.03403, accel diff: 0.01005, FGD: 18.583, feat_D: 137.844 / 11.8s
+2022-09-22 06:08:41,276:   best validation loss so far: 14.637 at EPOCH 93
+2022-09-22 06:10:59,055: EP 98 ( 44) | 1113m 30s, 41 samples/s | loss: 13.800, gen: 4.343, dis: 1.268, KLD: 0.186, DIV_REG: -4.542, 
+2022-09-22 06:13:16,668: EP 98 ( 88) | 1115m 47s, 41 samples/s | loss: 14.083, gen: 4.380, dis: 1.277, KLD: 0.186, DIV_REG: -4.565, 
+2022-09-22 06:15:34,417: EP 98 (132) | 1118m 5s, 41 samples/s | loss: 14.113, gen: 4.264, dis: 1.285, KLD: 0.186, DIV_REG: -4.650, 
+2022-09-22 06:17:52,150: EP 98 (176) | 1120m 23s, 41 samples/s | loss: 14.134, gen: 4.332, dis: 1.282, KLD: 0.186, DIV_REG: -4.607, 
+2022-09-22 06:20:09,766: EP 98 (220) | 1122m 40s, 41 samples/s | loss: 14.015, gen: 4.327, dis: 1.285, KLD: 0.186, DIV_REG: -4.578, 
+2022-09-22 06:20:34,139: [VAL] loss: 0.094, joint mae: 0.03404, accel diff: 0.01009, FGD: 26.874, feat_D: 138.202 / 11.8s
+2022-09-22 06:20:34,142:   best validation loss so far: 14.637 at EPOCH 93
+2022-09-22 06:22:51,732: EP 99 ( 44) | 1125m 22s, 41 samples/s | loss: 13.894, gen: 4.320, dis: 1.280, KLD: 0.186, DIV_REG: -4.571, 
+2022-09-22 06:25:09,476: EP 99 ( 88) | 1127m 40s, 41 samples/s | loss: 14.076, gen: 4.301, dis: 1.287, KLD: 0.186, DIV_REG: -4.658, 
+2022-09-22 06:27:26,985: EP 99 (132) | 1129m 58s, 41 samples/s | loss: 14.013, gen: 4.305, dis: 1.273, KLD: 0.186, DIV_REG: -4.600, 
+2022-09-22 06:29:44,525: EP 99 (176) | 1132m 15s, 41 samples/s | loss: 14.125, gen: 4.318, dis: 1.284, KLD: 0.186, DIV_REG: -4.604, 
+2022-09-22 06:32:02,252: EP 99 (220) | 1134m 33s, 40 samples/s | loss: 14.114, gen: 4.309, dis: 1.279, KLD: 0.186, DIV_REG: -4.601, 
+2022-09-22 06:32:14,831: --------- best loss values ---------
+2022-09-22 06:32:14,831: loss: 0.075 at EPOCH 3
+2022-09-22 06:32:14,832: joint_mae: 0.027 at EPOCH 3
+2022-09-22 06:32:14,832: frechet: 14.637 at EPOCH 93
+2022-09-22 06:32:14,832: feat_dist: 106.278 at EPOCH 1

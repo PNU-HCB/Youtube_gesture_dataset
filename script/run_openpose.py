@@ -70,8 +70,7 @@ if __name__ == '__main__':
 
     video_files = glob.glob(my_config.VIDEO_PATH + "/*.mp4")
     sorted_video_files = sorted(video_files, key=os.path.getmtime)
-    sliced_video_files = sorted_video_files[328:]
-    for file in sliced_video_files:
+    for file in sorted_video_files:
         print(file)
         vid = get_vid_from_filename(file)
         print(vid)
