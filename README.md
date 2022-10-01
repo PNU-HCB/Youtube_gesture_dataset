@@ -18,7 +18,7 @@
 
 ## 실행 순서
 
-1. 구성
+1. `config`
 
    - Youtube Develop Key와 채널 ID를 업데이트합니다.
 
