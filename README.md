@@ -1,121 +1,47 @@
-# Youtube Gesture Dataset
+# 유튜브 동영상 데이터 셋
 
-This repository contains scripts to build *Youtube Gesture Dataset*.
-You can download Youtube videos and transcripts, divide the videos into scenes, and extract human poses.
-Please see the project page and paper for the details.  
- 
-[[Project page]](https://sites.google.com/view/youngwoo-yoon/projects/co-speech-gesture-generation) [[Paper]](https://arxiv.org/abs/1810.12541)
+동장 생성 모델 학습을 위한 데이터 셋 생성을 위해 유튜브 채널로부터 영상과 자막 파일을 얻습니다. 영상으로부터 스켈레톤 데이터를 추출하고 클립으로 나누어 유효한 클립으로부터 포즈 데이터를 얻을 수 있습니다. 최종적으로는 3차원 Pose 데이터를 Lmdb 형식으로 얻을 수 있습니다.
 
-If you have any questions or comments, please feel free to contact me by email ([youngwoo@etri.re.kr](mailto:youngwoo@etri.re.kr)).
+[참고 논문](https://arxiv.org/abs/1810.12541)
 
-## Environment
+## 환경 설정
 
-The scripts are tested on Ubuntu 16.04 LTS and Python 3.5.2.  
-#### Dependencies 
-* [OpenPose](https://github.com/CMU-Perceptual-Computing-Lab/openpose) (v1.4) for pose estimation
-* [PySceneDetect](https://pyscenedetect.readthedocs.io/en/latest/) (v0.5) for video scene segmentation
-* [OpenCV](https://pypi.org/project/opencv-python/) (v3.4) for video read
-  * We uses FFMPEG. Use latest pip version of opencv-python or build OpenCV with FFMPEG.
-* [Gentle](https://github.com/lowerquality/gentle) (Jan. 2019 version) for transcript alignment
-  * Download the source code from Gentle github and run ./install.sh. And then, you can import gentle library by specifying the path to the library. See `run_gentle.py`.
-  * Add an option `-vn` to resample.py in gentle as follows:
-    ```python
-    cmd = [
-        FFMPEG,
-        '-loglevel', 'panic',
-        '-y',
-    ] + offset + [
-        '-i', infile,
-    ] + duration + [
-        '-vn',  # ADDED (it blocks video streams, see the ffmpeg option)
-        '-ac', '1', '-ar', '8000',
-        '-acodec', 'pcm_s16le',
-        outfile
-    ]
-    ``` 
+- OS (Window10 64bit)
+- CPU (Intel(R) Core(TM) i9-10900K)
+- GPU (RTX 3090)
+- RAM (64GM)
+- CUDA (11.1)
+- PyTorch (1.12.1)
+- TensorFlow (2.9.1)
+- OpenPose (1.7.0)
+- FastText (0.9.2)
 
-## A step-by-step guide
+## 실행 순서
 
-1. Set config
-   * Update paths and youtube developer key in `config.py` (the directories will be created if not exist).
-   * Update target channel ID. The scripts are tested for TED and LaughFactory channels.
+1. 구성
 
-2. Execute `download_video.py`
-   * Download youtube videos, metadata, and subtitles (./videos/*.mp4, *.json, *.vtt).
+   - Youtube Develop Key와 채널 ID를 업데이트합니다.
 
-3. Execute `run_openpose.py`
-   * Run [OpenPose](https://github.com/CMU-Perceptual-Computing-Lab/openpose) to extract body, hand, and face skeletons for all vidoes (./skeleton/*.pickle). 
+2. `download_video.py` 실행
 
-4. Execute `run_scenedetect.py`
-   * Run [PySceneDetect](https://pyscenedetect.readthedocs.io/en/latest/) to divide videos into scene clips (./clip/*.csv).
-  
-5. Execute `run_gentle.py`
-   * Run [Gentle](https://github.com/lowerquality/gentle) for word-level alignments (./videos/*_align_results.json).
-   * You should skip this step if you use auto-generated subtitles. This step is necessary for the TED Talks channel. 
+   - Youtube 영상, 메타데이터, 자막을 다운로드합니다.
+   - (./videos/_.mp4, _.json, \*.vtt)
 
-6. Execute `run_clip_filtering.py`
-   * Remove inappropriate clips.
-   * Save clips with body skeletons (./clip/*.json).
+3. `run_openpose.py` 실행
 
-7. *(optional)* Execute `review_filtered_clips.py`
-   * Review filtering results.
+   - OpenPose를 통해 모든 동영상에서 2차원 Pose를 추출합니다.
+   - (./skeleton/\*.pickle)
 
-8. Execute `make_ted_dataset.py`
-   * Do some post processing and split into train, validation, and test sets (./script/*.pickle).
+4. `run_scenedetect.py` 실행
 
+   - PySceneDetect를 실행하여 비디오를 클립으로 나눕니다.
+   - (./clip/\*.csv)
 
-## Pre-built TED gesture dataset
- 
-Running whole data collection pipeline is complex and takes several days, so we provide the pre-built dataset for the videos in the TED channel.  
+5. `run_clip_filtering.py` 실행
 
-| | |
-| --- | --- |
-| Number of videos | 1,766 |
-| Average length of videos | 12.7 min |
-| Shots of interest | 35,685 (20.2 per video on average) |
-| Ratio of shots of interest | 25% (35,685 / 144,302) |
-| Total length of shots of interest | 106.1 h |
+   - 유효하지 않은 클립을 제거합니다.
+   - (./clip/\*.json)
 
-* [[ted_raw_poses.zip]](https://drive.google.com/open?id=1vvweoCFAARODSa5J5Ew6dpGdHFHoEia2) 
-[[z01]](https://drive.google.com/open?id=1zR-GIx3vbqCMkvJ1HdCMjthUpj03XKwB) 
-[[z02]](https://kaistackr-my.sharepoint.com/:u:/g/personal/zeroyy_kaist_ac_kr/EeAaPXuWXYNJk9AWTKZ30zEBR0hHnSuXEmetiOD412cZ7g?e=qVSeYk) 
-[[z03]](https://drive.google.com/open?id=1uhfv6k0Q3E7bUIxYDAVjxKIjPM_gL8Wm)
-[[z04]](https://drive.google.com/open?id=1VLi0oQBW8xetN7XmkGZ-S_KhD-DvbVQB)
-[[z05]](https://drive.google.com/open?id=1F2wiRX421f3hiUkEeKcTBbtsgOEBy7lh) (split zip files, Google Drive or OneDrive links, total 80.9 GB)  
-The result of Step 3. It contains the extracted human poses for all frames. 
-* [[ted_shots_of_interest.zip, 13.3 GB]](https://drive.google.com/open?id=1kF7SVpxzhYEHCoSPpUt6aqSKvl9YaTEZ)  
-The result of Step 6. It contains shot segmentation results ({video_id}.csv files) and shots of interest ({video_id}.json files). 
-'clip_info' elements in JSON files have start/end frame numbers and a boolean value indicating shots of interest. 
-The JSON files contain the extracted human poses for the shots of interest, 
-so you don't need to download ted_raw_poses.zip unless the human poses for all frames are necessary.
-* [[ted_gesture_dataset.zip, 1.1 GB]](https://drive.google.com/open?id=1lZfvufQ_CIy3d2GFU2dgqIVo1gdmG6Dh)  
-The result of Step 8. Train/validation/test sets of speech-motion pairs. 
- 
-### Download videos and transcripts
-We do not provide the videos and transcripts of TED talks due to copyright issues.
-You should download actual videos and transcripts by yourself as follows:  
-1. Download and copy [[video_ids.txt]](https://drive.google.com/open?id=1grFWC7GBIeF2zlaOEtCWw4YgqHe3AFU-) file which contains video ids into `./videos` directory.
-2. Run `download_video.py`. It downloads the videos and transcripts in `video_ids.txt`.
-Some videos may not match to the extracted poses that we provided if the videos are re-uploaded.
-Please compare the numbers of frames, just in case.
-
-
-## Citation 
-
-If our code or dataset is helpful, please kindly cite the following paper:
-```
-@INPROCEEDINGS{
-  yoonICRA19,
-  title={Robots Learn Social Skills: End-to-End Learning of Co-Speech Gesture Generation for Humanoid Robots},
-  author={Yoon, Youngwoo and Ko, Woo-Ri and Jang, Minsu and Lee, Jaeyeon and Kim, Jaehong and Lee, Geehyuk},
-  booktitle={Proc. of The International Conference in Robotics and Automation (ICRA)},
-  year={2019}
-}
-```
-
-## Related Projects
-Speech Gesture Generation from the Trimodal Context of Text, Audio, and Speaker Identity (SIGGRAPH Asia 2020), https://github.com/ai4r/Gesture-Generation-from-Trimodal-Context
-
-## Acknowledgement
-* This work was supported by the ICT R&D program of MSIP/IITP. [2017-0-00162, Development of Human-care Robot Technology for Aging Society]   
-* Thanks to [Eun-Sol Cho](https://github.com/euns2ol) and [Jongwon Kim](mailto:jwk9284@gmail.com) for contributions during their internships at ETRI.
+6. `make_lmdb_test.py` 실행
+   - 2차원 Pose를 바탕으로 3차원 Pose를 추정하고 일부 후처리 후 데이터 셋을 생성합니다.
+   - (./script/\*.lmdb)
