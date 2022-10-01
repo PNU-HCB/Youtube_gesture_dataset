@@ -25,23 +25,18 @@
 2. `download_video.py` 실행
 
    - Youtube 영상, 메타데이터, 자막을 다운로드합니다.
-   - (./videos/_.mp4, _.json, \*.vtt)
 
 3. `run_openpose.py` 실행
 
    - OpenPose를 통해 모든 동영상에서 2차원 Pose를 추출합니다.
-   - (./skeleton/\*.pickle)
 
 4. `run_scenedetect.py` 실행
 
    - PySceneDetect를 실행하여 비디오를 클립으로 나눕니다.
-   - (./clip/\*.csv)
 
 5. `run_clip_filtering.py` 실행
 
    - 유효하지 않은 클립을 제거합니다.
-   - (./clip/\*.json)
 
 6. `make_lmdb_test.py` 실행
    - 2차원 Pose를 바탕으로 3차원 Pose를 추정하고 일부 후처리 후 데이터 셋을 생성합니다.
-   - (./script/\*.lmdb)
